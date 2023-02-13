@@ -1,0 +1,318 @@
+@media screen and (min-width: 320px) and (max-width: 375px) {
+  /* navbar start here  */
+
+  aside .right_sidebar {
+    display: none;
+    border-radius: none;
+  }
+
+  .NavbarCon nav .wraper {
+    justify-content: flex-start;
+    padding: 0.2rem 1.2rem;
+    width: 100vw;
+  }
+  .NavbarCon .logo svg {
+    color: #0a66c2;
+    padding: 2px;
+  }
+
+  .NavbarCon .left {
+    padding-left: 0rem;
+    display: flex;
+    gap: 1rem;
+  }
+  .NavbarCon .right {
+    padding-right: 0rem;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .NavbarCon nav .wraper input {
+    display: none;
+  }
+  .NavbarCon nav .input {
+    background-color: transparent;
+    width: 100%;
+    padding: 0rem;
+  }
+
+  .NavbarCon .right svg {
+    height: 20px;
+  }
+
+  .NavbarCon .right h6 {
+    display: none;
+  }
+
+  .NavbarCon .right a i {
+    display: none;
+  }
+  .NavbarCon .right .work,
+  .NavbarCon .right .user,
+  .NavbarCon .right .notification,
+  .NavbarCon .right .jobPost {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 375px) and (max-width: 450px) {
+  /* navs tart here  */
+  .NavbarCon nav .wraper {
+    justify-content: flex-start;
+    padding: 0.2rem 1.2rem;
+    width: 100vw;
+  }
+  .NavbarCon .logo svg {
+    color: #0a66c2;
+    padding: 2px;
+  }
+
+  .NavbarCon .left {
+    padding-left: 0rem;
+    display: flex;
+    gap: 1rem;
+  }
+  .NavbarCon .right {
+    /* width: 100%; */
+    padding-right: 0rem;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .NavbarCon nav .wraper input {
+    display: none;
+  }
+  .NavbarCon nav .input {
+    background-color: transparent;
+    width: 100%;
+    padding: 0rem;
+  }
+
+  .NavbarCon.right svg {
+    height: 25px;
+    width: 35px;
+  }
+
+  .NavbarCon .right h6 {
+    display: none;
+  }
+
+  .NavbarCon .right a i {
+    display: none;
+  }
+  .NavbarCon .right .work,
+  .NavbarCon .right .user,
+  .NavbarCon .right .jobPost {
+    display: none;
+  }
+
+  .NavbarCon .right .work,
+  .NavbarCon .right .jobPost {
+    display: none;
+  }
+
+  /* nav end here  */
+}
+
+@media screen and (min-width: 450px) and (max-width: 550px) {
+  /* navs tart here  */
+  .NavbarCon nav .wraper {
+    justify-content: flex-start;
+    padding: 0.2rem 1.2rem;
+    width: 100vw;
+  }
+  .NavbarCon .logo svg {
+    color: #0a66c2;
+    padding: 2px;
+  }
+
+  .NavbarCon .left {
+    padding-left: 0rem;
+    display: flex;
+    gap: 1rem;
+  }
+  .NavbarCon .right {
+    /* width: 100%; */
+    padding-right: 0rem;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .NavbarCon nav .wraper input {
+    display: none;
+  }
+  .NavbarCon nav .input {
+    background-color: transparent;
+    width: 100%;
+    padding: 0rem;
+  }
+
+  .NavbarCon .right svg {
+    height: 25px;
+    width: 35px;
+  }
+
+  .NavbarCon .right h6 {
+    display: none;
+  }
+
+  .NavbarCon .right a i {
+    display: none;
+  }
+
+  .NavbarCon .right .work,
+  .NavbarCon .right .jobPost {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 550px) and (max-width: 768px) {
+  /* navs tart here  */
+  .NavbarCon nav .wraper {
+    justify-content: flex-start;
+    padding: 0.2rem 1.2rem;
+    width: 100vw;
+  }
+  .NavbarCon .logo svg {
+    color: #0a66c2;
+    padding: 2px;
+  }
+
+  .NavbarCon .left {
+    padding-left: 0rem;
+    display: flex;
+    gap: 1rem;
+  }
+  .NavbarCon .right {
+    /* width: 100%; */
+    padding-right: 0rem;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .NavbarCon nav .wraper input {
+    display: none;
+  }
+  .NavbarCon nav .input {
+    background-color: transparent;
+    width: 100%;
+    padding: 0rem;
+  }
+
+  .NavbarCon .right svg {
+    height: 25px;
+    width: 30px;
+  }
+
+  .NavbarCon .right h6 {
+    display: none;
+  }
+
+  .NavbarCon .right a i {
+    display: none;
+  }
+  .NavbarCon .right .work {
+    border-left: 1px solid rgb(215, 213, 213);
+    padding-left: 1.5rem;
+    height: 3rem;
+    position: relative;
+  }
+}
+
+/* //////////////////////// Tab /////////////////// */
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  /* navs tart here  */
+  .NavbarCon nav .wraper {
+    justify-content: flex-start;
+    padding: 0.2rem 1.2rem;
+    width: 100vw;
+  }
+  .NavbarCon nav h6 {
+    font-size: 1.2rem;
+  }
+
+  .NavbarCon.input h6 {
+    display: none;
+  }
+  .NavbarCon .left {
+    padding-left: 0rem;
+    gap: 1rem;
+  }
+  .NavbarCon .right {
+    /* width: 100%; */
+    padding-right: 0rem;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .NavbarCon nav .wraper input {
+    display: none;
+  }
+  .NavbarCon nav .input {
+    background-color: transparent;
+    width: 100%;
+    padding: 0rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    align-items: center;
+    justify-content: center;
+  }
+  .NavbarCon nav .input h6 {
+    display: block;
+  }
+
+  .NavbarCon .right svg {
+    height: 25px;
+    width: 30px;
+  }
+
+  .NavbarCon .right a i {
+    display: none;
+  }
+  .NavbarCon .right .work {
+    border-left: 1px solid rgb(215, 213, 213);
+    padding-left: 1.5rem;
+    height: 3rem;
+    position: relative;
+  }
+}
+
+/* /////////////////////////Laptop/////////////////////// */
+
+@media screen and (min-width: 1020px) and (max-width: 1400px) {
+  .NavbarCon nav .wraper {
+    justify-content: center;
+    padding: 0.2rem 1.2rem;
+    width: 100vw;
+  }
+  .NavbarCon nav h6 {
+    font-size: 1.2rem;
+  }
+
+  .NavbarCon .left {
+    padding-left: 0rem;
+    gap: 1rem;
+  }
+  .NavbarCon .right {
+    padding-right: 0rem;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .NavbarCon.right svg {
+    height: 25px;
+    width: 30px;
+  }
+
+  .NavbarCon .right a i {
+    display: none;
+  }
+  .NavbarCon .right .work {
+    border-left: 1px solid rgb(215, 213, 213);
+    padding-left: 1.5rem;
+    height: 3rem;
+    position: relative;
+  }
+}

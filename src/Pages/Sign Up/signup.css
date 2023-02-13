@@ -1,0 +1,243 @@
+.signUpCon {
+  background-color: #f3f2ef;
+  text-align: center;
+}
+.signUpCon .svg {
+  width: 100%;
+}
+.signUpCon section svg {
+  width: 135px;
+  display: flex;
+  text-align: left;
+  justify-content: flex-start;
+  margin-left: 180px;
+}
+
+.signUpCon section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+}
+.signUpCon section h2 {
+  font-weight: 400;
+  margin: 1.4rem;
+  font-size: 1.8rem;
+}
+
+.signUpCon form {
+  background-color: #ffffff;
+  width: 400px;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1.5rem;
+}
+
+.signUpCon input {
+  width: 100%;
+  border-radius: 2px;
+  padding: 5px 12px;
+  border: none;
+  outline: none;
+  box-shadow: 0 0 0 1px #8c8c8c;
+}
+.signUpCon input:focus {
+  box-shadow: 0 0 0 2px rgb(62, 61, 61);
+}
+
+.signUpCon form label {
+  display: block;
+  text-align: left;
+  color: #666666;
+  font-size: 0.8rem;
+  padding-bottom: 0.2rem;
+}
+
+.signUpCon form .form_group {
+  margin: 1rem 0;
+}
+
+.signUpCon form p {
+  font-size: 0.7rem;
+  color: #8e8f8e;
+  margin-bottom: 1rem;
+}
+
+.signUpCon form p a {
+  font-weight: 500;
+}
+.signUpCon form p a {
+  color: #0a66c2;
+  text-decoration: none;
+}
+.signUpCon form p a :hover {
+  text-decoration: underline;
+}
+
+.signUpCon form button {
+  width: 100%;
+  padding: 0.7rem;
+  border-radius: 100vw;
+  border: none;
+  cursor: pointer;
+}
+
+.signUpCon form .agreeBtn {
+  background-color: #0a66c2;
+  color: #ffffff;
+  font-size: 1rem;
+  transition: 0.2s ease;
+}
+.signUpCon form .agreeBtn:hover {
+  background-color: #004182;
+}
+
+.signUpCon .devider {
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 0;
+  padding: 0px 1rem;
+  width: 100%;
+}
+
+.signUpCon .devider .line {
+  height: 0.1rem;
+  width: 100%;
+
+  background-color: #d3d5d8;
+}
+.signUpCon .devider h4 {
+  padding: 0 1rem;
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 300;
+}
+
+.signUpCon form .googleBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* column-gap: 1rem ; */
+  background-color: transparent;
+  box-shadow: 0 0 0 1px #c5daee;
+  color: rgb(72, 69, 69);
+  font-weight: 500;
+  font-size: 0.8rem;
+  transition: 0.2s ease;
+  padding: 0.4rem 1rem;
+}
+
+.signUpCon form .google {
+  padding: 0rem 1rem;
+  margin-top: 1.5rem;
+}
+
+.signUpCon form .googleBtn:hover {
+  box-shadow: 0 0 0 1px #5c97d2;
+  background-color: #d7e2ec;
+}
+
+.signUpCon .googleBtn img {
+  width: 25px;
+  /* margin: 0 1rem; */
+}
+
+.signUpCon .alreadySign {
+  font-size: 1rem;
+  color: #000;
+  font-weight: 300;
+  margin-top: 1.3rem;
+}
+
+.signUpCon .help {
+  font-size: 0.8rem;
+  margin-top: 1rem;
+  font-weight: 30 0;
+}
+.signUpCon .help a {
+  font-weight: 600;
+  color: #0a66c2;
+}
+
+.signUpCon footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  background-color: #ffffff;
+  width: 100%;
+  /* padding: 0.6rem 0; */
+}
+
+.signUpCon .copyright {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem;
+}
+.signUpCon .copyright p {
+  margin: 0.2rem;
+  font-size: 0.8rem;
+}
+.signUpCon .copyright svg {
+  width: 60px;
+}
+
+.signUpCon footer a {
+  color: #8e8f8e;
+  font-size: 0.7rem;
+  margin: 0 0.4rem;
+  font-weight: 500;
+}
+
+.signUpCon footer a:hover {
+  color: #0a66c2;
+}
+
+@media only screen and (max-width: 1160px) {
+  .signUpCon {
+    background-color: #ffff;
+  }
+  .signUpCon section svg {
+    margin-left: 0px;
+  }
+  .signUpCon section {
+    padding: 1.5rem 0rem;
+  }
+  .signUpCon section h2 {
+    margin: 0rem;
+    margin-top: 1rem;
+    padding: 1rem;
+  }
+
+  .signUpCon form {
+    padding: 0rem;
+    width: 460px;
+  }
+  .signUpCon form .form_group {
+    margin: 1rem 0;
+  }
+  .signUpCon form p {
+    margin-bottom: 0rem;
+  }
+  .signUpCon form .agreeBtn {
+    font-size: 0.9rem;
+  }
+  .signUpCon .devider {
+    display: none;
+  }
+  .signUpCon form .google {
+    padding: 0rem 4rem;
+    margin-top: 1.5rem;
+  }
+  .signUpCon .copyright {
+    margin: 0;
+    padding: 0;
+  }
+  .signUpCon footer {
+    display: grid;
+    grid-template-columns: 40% 50%;
+    grid-gap: 0.6rem;
+    text-align: left;
+    margin: 1rem 0rem;
+  }
+}
