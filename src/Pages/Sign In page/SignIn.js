@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import sign from './SignIn.module.css'
 import './sign.css'
 
 const SignIn = () => {
@@ -82,7 +81,7 @@ const SignIn = () => {
                         />
                     </div>
 
-                    <p className="forget"><a href="#">Forgot password?</a>.</p>
+                    <p className="forget"><Link to='/'>Forgot password?</Link>.</p>
 
                     <button className="agreeBtn">SignIn</button>
 
@@ -153,13 +152,13 @@ const SignIn = () => {
                     <p>2023</p>
                 </div>
 
-                <a href="#">User Agreement</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Community Guidelines</a>
-                <a href="#">Cookie Policy</a>
-                <a href="#">Copyright Policy</a>
-                <a href="#">Send Feedback</a>
-                <a href="#">Languages</a>
+                <Link to='/'>User Agreement</Link>
+                <Link to='/'>Privacy Policy</Link>
+                <Link to='/'>Community Guidelines</Link>
+                <Link to='/'>Cookie Policy</Link>
+                <Link to='/'>Copyright Policy</Link>
+                <Link to='/'>Send Feedback</Link>
+                <Link to='/'>Languages</Link>
             </footer>
         </div>
     );

@@ -13,7 +13,6 @@ const Home = () => {
                 <LeftSide></LeftSide>
                 <MainSide></MainSide>
                 <RightSide></RightSide>
-
             </div>
         </div>
     );

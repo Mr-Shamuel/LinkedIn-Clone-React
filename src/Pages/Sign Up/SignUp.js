@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import Style from './signup.module.css';
 import './signup.css';
 const SignUp = () => {
     return (
@@ -76,8 +75,8 @@ const SignUp = () => {
 
                     <p>
                         By clicking Agree & Join, you agree to the LinkedIn
-                        <a href="#">User Agreement</a>,<a href="#">Privacy Policy</a>, and
-                        <a href="#">Cookie Policy</a>.
+                        <Link to='/'>User Agreement</Link>,<Link to='/'>Privacy Policy</Link>, and
+                        <Link to='/'>Cookie Policy</Link>.
                     </p>
 
                     <button className="agreeBtn">Agree & Join</button>
@@ -106,7 +105,7 @@ const SignUp = () => {
                     </p>
                 </form>
                 <p className="help">
-                    Looking to create a page for a business? <a href="#">Get help</a>
+                    Looking to create a page for a business? <Link to='/'>Get help</Link>
                 </p>
             </section>
 
@@ -157,16 +156,16 @@ const SignUp = () => {
                     <p>2021</p>
                 </div>
 
-                <a href="#">About</a>
-                <a href="#">Accessibility</a>
-                <a href="#">User Agreement</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Cookie Policy</a>
-                <a href="#">Copyright Policy</a>
-                <a href="#">Brand Policy</a>
-                <a href="#">Guest Controls</a>
-                <a href="#">Community Guidelines</a>
-                <a href="#">Languages</a>
+                <Link to='/'>About</Link>
+                <Link to='/'>Accessibility</Link>
+                <Link to='/'>User Agreement</Link>
+                <Link to='/'>Privacy Policy</Link>
+                <Link to='/'>Cookie Policy</Link>
+                <Link to='/'>Copyright Policy</Link>
+                <Link to='/'>Brand Policy</Link>
+                <Link to='/'>Guest Controls</Link>
+                <Link to='/'>Community Guidelines</Link>
+                <Link to='/'>Languages</Link>
             </footer>
 
         </div>

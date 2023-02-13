@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './RightSide.css'
 const RightSide = () => {
     return (
@@ -55,15 +56,15 @@ const RightSide = () => {
 
                     <footer>
                         <div class="footer">
-                            <a href="#">About</a>
-                            <a href="#">Accessibility</a>
-                            <a href="#">Help Center</a>
-                            <a href="#">Privacy & Terms </a>
-                            <a href="#">Ad Choices</a>
-                            <a href="#">Advertising</a>
-                            <a href="#">Business Services </a>
-                            <a href="#">Get the LinkedIn app</a>
-                            <a href="#">More</a>
+                            <Link to='/'>About</Link>
+                            <Link to='/'>Accessibility</Link>
+                            <Link to='/'>Help Center</Link>
+                            <Link to='/'>Privacy & Terms </Link>
+                            <Link to='/'>Ad Choices</Link>
+                            <Link to='/'>Advertising</Link>
+                            <Link to='/'>Business Services </Link>
+                            <Link to='/'>Get the LinkedIn app</Link>
+                            <Link to='/'>More</Link>
                         </div>
 
                         <div class="btm">
