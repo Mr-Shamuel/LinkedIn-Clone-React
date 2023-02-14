@@ -1,0 +1,200 @@
+.modal,
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+}
+
+.overlay {
+  background: rgba(49, 49, 49, 0.8);
+}
+
+.modal-content {
+  position: absolute;
+  top: 34%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  width: 490px;
+  /* max-height: 100%; */
+}
+
+.modal-content .modal_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+  border-bottom: 1px solid rgb(227, 224, 224);
+}
+.modal-content h6 {
+  font-size: 16px;
+  font-weight: 400;
+  color: black;
+}
+.modal-content .modal_main {
+  padding-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0rem;
+}
+.modal-content .modal_main .profile {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.modal-content .modal_main .profile .name {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgb(0 0 0 / 90%);
+}
+.modal-content .modal_main .profile .anyone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  padding: 2px;
+  border-radius: 5rem;
+  color: #56687a;
+  border: 1px solid #56687a;
+}
+.modal-content .modal_main .profile .anyone:hover {
+  box-shadow: 1px solid red;
+  background-color: #e2e2e2;
+  cursor: pointer;
+}
+.modal-content .modal_main .profile .anyone h6 {
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.modal-content .modal_main .profile .anyone svg {
+  width: 15px;
+  height: 15px;
+}
+.modal_main .profile img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+
+.modal_main .editor_con textarea {
+  border: none;
+  outline: none;
+  min-width: 100%;
+  height: 100px;
+  padding: 1rem 0rem;
+  font-size: 12px;
+}
+
+/* hashtags / */
+
+.editor_con .hashTag {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  padding: 0.8rem 0rem;
+}
+
+.editor_con .hashTag svg {
+  width: 36px;
+  height: 36px;
+  padding: 8px;
+  cursor: pointer;
+}
+.editor_con .hashTag a {
+  padding: 0.4rem;
+  color: #0a66c2;
+  text-decoration: none;
+}
+.editor_con .hashTag a h6 {
+  font-size: 12px;
+  font-weight: 500;
+  color: #0a66c2;
+}
+
+.editor_con .hashTag a:hover {
+  border-radius: 0.2rem;
+  background-color: #e1ebf5;
+}
+
+/* bottom media  */
+.editor_con .selectMedia {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.editor_con .selectMedia .left {
+  display: flex;
+  align-items: center;
+  /* gap: 0.2rem; */
+}
+.modal .input_icon svg {
+  width: 36px;
+  height: 36px;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.modal svg:hover {
+  background-color: #e2e2e2;
+  border-radius: 50%;
+}
+.editor_con .selectMedia .left .input_icon span {
+  /* display: none; */
+}
+
+.input_iconComment {
+  display: flex;
+  align-items: center;
+  border-left: 1px solid rgb(191, 190, 190);
+  gap: 0.5rem;
+  padding: 0.4rem 0.5rem;
+}
+.input_iconComment h6 {
+  font-size: 12px;
+}
+
+.input_iconComment:hover {
+  background-color: #e2e2e2;
+  border-radius: 5rem;
+  cursor: pointer;
+}
+
+.modal .editor_con .right {
+  display: flex;
+}
+.modal .editor_con .right .input_icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+.modal .editor_con .right .input_icon input {
+  border: none;
+  outline: none;
+  background-color: #0a66c2;
+  color: whitesmoke;
+  padding: 3px 12px;
+  border-radius: 5rem;
+  cursor: pointer;
+}
+
+/* making a tultip  */
+.editor_con .selectMedia .left {
+}
+.editor_con .selectMedia .left span {
+  visibility: hidden;
+  display: none;
+}
+
+.editor_con .selectMedia .left :hover span {
+  visibility: visible;
+}

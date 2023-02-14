@@ -1,7 +1,15 @@
-import React from 'react';
-import './MainSide.css'
-
+import React, { useState } from 'react';
+import './MainSide.css';
+import Modal from '../../../Components/Modal/Modal';
+import '../../../Components/Modal/Modal.css'
 const MainSide = () => {
+
+    const [modal, setModal] = useState(false);
+    const toggleModal = () => {
+        setModal(!modal)
+    }
+
+
     return (
         <div className='MainSide_con'>
             <main>
@@ -14,11 +22,13 @@ const MainSide = () => {
                             className="EntityPhoto-circle-3 ember-view"
 
                         />
+
                         <input
-                            type="search"
+                            type="button"
                             name="search"
                             id="search"
                             placeholder="Start a post"
+                            onClick={toggleModal}
                         />
                     </div>
                     <div className="media">
@@ -92,6 +102,10 @@ const MainSide = () => {
                         </div>
                     </div>
                 </div>
+
+                {modal && <Modal modals={modal} toggleModal={toggleModal} />}
+
+
 
                 {/* <!-- newsfeed start here *************** --> */}
                 <div className="newsfeedCon">
