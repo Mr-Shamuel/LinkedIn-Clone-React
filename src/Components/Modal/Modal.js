@@ -1,9 +1,33 @@
 
-import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './Modal.css'
 
 const Modal = ({ modals, toggleModal }) => {
-    console.log(modals)
+    const [post, setPost] = useState('');
+    console.log(post)
+    const navigate = useNavigate();
+
+    const handleSubmit = (e) => {
+
+        axios.post('https://63ac4337da81ba97617eebed.mockapi.io/LinkedIn', {
+            post: post,
+
+        })
+            .then((response) => {
+
+
+                toggleModal();
+
+
+            });
+
+
+
+        e.preventDefault();
+    }
+
 
     return (
         <div className='modalCon'>
@@ -36,8 +60,8 @@ const Modal = ({ modals, toggleModal }) => {
                         </div>
 
                         <div className="editor_con">
-                            <form >
-                                <textarea type="text" placeholder=' What you want to talk about?' />
+                            <form onSubmit={handleSubmit}>
+                                <textarea onChange={(e) => setPost(e.target.value)} type="text" value={post} placeholder=' What you want to talk about?' />
 
                                 <footer>
                                     <div className="hashTag">
@@ -52,39 +76,43 @@ const Modal = ({ modals, toggleModal }) => {
                                     <div className="selectMedia">
                                         <div className="left">
                                             <div className="input_icon x1">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" class="mercado-match" width="24" height="24" focusable="false">
-                                                    <path d="M19 4H5a3 3 0 00-3 3v10a3 3 0 003 3h14a3 3 0 003-3V7a3 3 0 00-3-3zm1 13a1 1 0 01-.29.71L16 14l-2 2-6-6-4 4V7a1 1 0 011-1h14a1 1 0 011 1zm-2-7a2 2 0 11-2-2 2 2 0 012 2z"></path>
-                                                </svg>
                                                 <span class="icon__text">
                                                     Add a photo
                                                 </span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" class="mercado-match" width="24" height="24" focusable="false">
+                                                    <path d="M19 4H5a3 3 0 00-3 3v10a3 3 0 003 3h14a3 3 0 003-3V7a3 3 0 00-3-3zm1 13a1 1 0 01-.29.71L16 14l-2 2-6-6-4 4V7a1 1 0 011-1h14a1 1 0 011 1zm-2-7a2 2 0 11-2-2 2 2 0 012 2z"></path>
+                                                </svg>
+
 
                                             </div>
                                             <div className="input_icon x2">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" class="mercado-match" width="24" height="24" focusable="false">
-                                                    <path d="M19 4H5a3 3 0 00-3 3v10a3 3 0 003 3h14a3 3 0 003-3V7a3 3 0 00-3-3zm-9 12V8l6 4z"></path>
-                                                </svg>
                                                 <span class="icon__text">
                                                     Add a video
                                                 </span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" class="mercado-match" width="24" height="24" focusable="false">
+                                                    <path d="M19 4H5a3 3 0 00-3 3v10a3 3 0 003 3h14a3 3 0 003-3V7a3 3 0 00-3-3zm-9 12V8l6 4z"></path>
+                                                </svg>
+
 
                                             </div>
                                             <div className="input_icon">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" class="mercado-match" width="24" height="24" focusable="false">
-                                                    <path d="M3 3v15a3 3 0 003 3h9v-6h6V3zm9 8H6v-1h6zm6-3H6V7h12zm-2 8h5l-5 5z"></path>
-                                                </svg>
                                                 <span class="icon__text">
                                                     Add a document
                                                 </span>
 
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" class="mercado-match" width="24" height="24" focusable="false">
+                                                    <path d="M3 3v15a3 3 0 003 3h9v-6h6V3zm9 8H6v-1h6zm6-3H6V7h12zm-2 8h5l-5 5z"></path>
+                                                </svg>
+
                                             </div>
                                             <div className="input_icon">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" class="mercado-match" width="24" height="24" focusable="false">
-                                                    <path d="M14 12a2 2 0 11-2-2 2 2 0 012 2zM4 10a2 2 0 102 2 2 2 0 00-2-2zm16 0a2 2 0 102 2 2 2 0 00-2-2z"></path>
-                                                </svg>
                                                 <span class="icon__text">
                                                     Add to your post
                                                 </span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" class="mercado-match" width="24" height="24" focusable="false">
+                                                    <path d="M14 12a2 2 0 11-2-2 2 2 0 012 2zM4 10a2 2 0 102 2 2 2 0 00-2-2zm16 0a2 2 0 102 2 2 2 0 00-2-2z"></path>
+                                                </svg>
+
 
                                             </div>
 
