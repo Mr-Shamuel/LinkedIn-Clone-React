@@ -213,14 +213,16 @@ const MainSide = () => {
                 </div> */}
 
                 {
-                    posts.map(user => {
-                        const { id, post } = user;
+                    posts.map(post => {
+
+                        const { id, desc, post_img } = post;
+
                         return (
-                            <div className="newsfeedCon">
+                            <div className="newsfeedCon" key={id}>
                                 <div className="newsfeed">
                                     <div className="header">
                                         <div className="profile">
-                                            <img style={{ width: '50px', height: '50px', borderRadius: '50%' }} src="https://media.licdn.com/dms/image/C4D03AQE-NHNMs2SOQA/profile-displayphoto-shrink_100_100/0/1655985618559?e=1681948800&amp;v=beta&amp;t=aBNl79AGLra-LwLOujv_ThaAz5tDEqBJbuBan_M8hYI" loading="lazy" alt="Shamuel Molla" id="ember2440" class="presence-entity__image  ivm-view-attr__img--centered EntityPhoto-circle-3 update-components-actor__avatar-image EntityPhoto-circle-3 lazy-image ember-view" />
+                                            <img style={{ width: '50px', height: '50px', borderRadius: '50%' }} src="https://media.licdn.com/dms/image/C4D03AQE-NHNMs2SOQA/profile-displayphoto-shrink_100_100/0/1655985618559?e=1681948800&amp;v=beta&amp;t=aBNl79AGLra-LwLOujv_ThaAz5tDEqBJbuBan_M8hYI" loading="lazy" alt="Shamuel Molla" id="ember2440" className="presence-entity__image  ivm-view-attr__img--centered EntityPhoto-circle-3 update-components-actor__avatar-image EntityPhoto-circle-3 lazy-image ember-view" />
                                             <h6>
                                                 Shamuel Molla
                                                 <span> #1 Front End Developer🚀
@@ -246,10 +248,10 @@ const MainSide = () => {
                                     </div>
                                     <div className="box">
                                         <p>
-                                            {post}
+                                            {desc}
                                         </p>
                                         <img
-                                            src="https://media.licdn.com/dms/image/C4E22AQGkQIZgryL_mg/feedshare-shrink_800/0/1675605639925?e=1678320000&v=beta&t=YschkzLd4Gj6vTzKD8L04pv9HJiS0x9RPc4Tg8LNjNU"
+                                            src={post_img}
                                             alt=""
                                         />
 

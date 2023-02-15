@@ -29,9 +29,26 @@ const Modal = ({ toggleModal }) => {
         formData.append("upload_preset", 'a1isxeb2');
 
 
+
+
+        //first uploading iamge .After upload then the post decription will upload to the server.
         axios.post('https://api.cloudinary.com/v1_1/dx5tmn3oc/image/upload', formData)
             .then((res) => {
-                console.log('Image upload successful:', res);
+                // console.log('Image upload successful:', res.data.secure_url);
+
+                const postData = { //making object
+                    desc: post,
+                    post_img: res.data.secure_url
+
+                }
+
+                //sending post description to the server
+                axios.post('https://63ac4337da81ba97617eebed.mockapi.io/LinkedIn', postData)
+                    .then((response) => {
+                        console.log(response.data)
+                        toggleModal();
+                    });
+
             })
             .catch((error) => {
                 console.error('Image upload failed:', error);
