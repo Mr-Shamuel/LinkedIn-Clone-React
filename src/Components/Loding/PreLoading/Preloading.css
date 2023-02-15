@@ -1,0 +1,60 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap");
+
+.preLoadingcon {
+  font-family: "Lato", sans-serif;
+  background: #f3f2ef;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.preLoadingcon .container {
+  display: flex;
+  flex-direction: row;
+  gap: 0rem;
+  margin: 0rem;
+}
+.preLoadingcon .part1 {
+  font-weight: 400;
+  font-size: 2rem;
+  color: #0e76a8;
+  background-color: #e8e9ea;
+}
+.preLoadingcon .part2 {
+  background-color: #0e76a8;
+  border-radius: 5px;
+  color: white;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  font-weight: 400;
+  font-size: 2rem;
+  margin-left: 0.5rem;
+}
+.preLoadingcon .loader {
+  position: absolute;
+
+  left: 50%;
+  margin-top: 0.5rem;
+  transform: translate(-50%, -50%);
+  height: 2px;
+  width: 8rem;
+  background-color: lightgrey;
+}
+.preLoadingcon .loading {
+  background-color: #0e76a8;
+  width: 1rem;
+  height: 2px;
+  animation: animation 1.8s infinite;
+}
+
+@keyframes animation {
+  0% {
+    transform: translateX(0rem);
+  }
+  50% {
+    transform: translateX(7rem);
+  }
+  100% {
+    transform: translateX(0rem);
+  }
+}
