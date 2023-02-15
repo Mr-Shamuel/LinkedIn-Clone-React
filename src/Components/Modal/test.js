@@ -1,41 +1,38 @@
 
 import axios from 'axios';
 import { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Modal.css'
 
-const Modal = ({ toggleModal }) => {
+const Modal = ({ modals, toggleModal }) => {
     const [post, setPost] = useState('');
-    const [Imagefiles, setImageFiles] = useState("")
+    const [file, setFile] = useState(null);
 
 
     const inputRef = useRef(null);
 
-    //uploading text and image
     const handleSubmit = (e) => {
+        // const formData = new FormData();
+        // formData.append('image', file)
 
-        // text 
         // axios.post('https://63ac4337da81ba97617eebed.mockapi.io/LinkedIn', {
         //     post: post,
+        //     images: formData
         // })
         //     .then((response) => {
         //         toggleModal();
         //     });
 
-
-        // images 
         const formData = new FormData();
-        formData.append("file", Imagefiles);
-        formData.append("upload_preset", 'a1isxeb2');
-
-
-        axios.post('https://api.cloudinary.com/v1_1/dx5tmn3oc/image/upload', formData)
-            .then((res) => {
-                console.log('Image upload successful:', res);
+        formData.append('image', file);
+        axios.post('https://63ac4337da81ba97617eebed.mockapi.io/LinkedIn', formData)
+            .then((response) => {
+                console.log(response.data);
             })
             .catch((error) => {
-                console.error('Image upload failed:', error);
+                console.log(error);
             });
+
 
         e.preventDefault();
     }
@@ -92,12 +89,15 @@ const Modal = ({ toggleModal }) => {
                                                     Add a photo
                                                 </span>
 
-
+                                                {/* {file && (
+                                                    <img style={{ width: '50px' }} src={URL.createObjectURL(file)} alt="Selected file" />
+                                                )
+                                                } */}
 
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" className="mercado-match" width="24" height="24" focusable="false">
                                                     <path d="M19 4H5a3 3 0 00-3 3v10a3 3 0 003 3h14a3 3 0 003-3V7a3 3 0 00-3-3zm1 13a1 1 0 01-.29.71L16 14l-2 2-6-6-4 4V7a1 1 0 011-1h14a1 1 0 011 1zm-2-7a2 2 0 11-2-2 2 2 0 012 2z"></path>
                                                 </svg>
-                                                <input type="file" onChange={(e) => setImageFiles(e.target.files[0])} ref={inputRef} hidden />
+                                                <input type="file" onChange={(e) => setFile(e.target.files[0])} ref={inputRef} hidden />
 
 
                                             </div>
@@ -155,16 +155,7 @@ const Modal = ({ toggleModal }) => {
                                                     </g>
                                                 </svg>
                                                 {/* <h6>Post</h6> */}
-                                                {/* <input type="submit" value="Post" disabled='true' /> */}
-
-                                                {
-                                                    (post.length === 0) ?
-                                                        <input disabled type="submit" value="Post" style={{ color: "grey", background: '#e2e2e2', cursor: 'not-allowed' }} />
-                                                        :
-                                                        <input type="submit" value="Post" />
-
-                                                    // <input type="submit" value="Post" disabled='true' />
-                                                }
+                                                <input type="submit" value="Post" />
 
 
                                             </div>

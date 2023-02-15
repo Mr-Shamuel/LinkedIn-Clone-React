@@ -1,13 +1,27 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './MainSide.css';
 import Modal from '../../../Components/Modal/Modal';
 import '../../../Components/Modal/Modal.css'
+import axios from 'axios';
 const MainSide = () => {
 
     const [modal, setModal] = useState(false);
+    const [posts, setPosts] = useState([]);
+
     const toggleModal = () => {
         setModal(!modal)
     }
+
+    //getting post 
+    const gettigPosts = () => {
+        axios.get('https://63ac4337da81ba97617eebed.mockapi.io/LinkedIn')
+            .then(res => setPosts(res.data))
+    }
+
+    useEffect(() => {
+
+        gettigPosts();
+    })
 
 
     return (
@@ -108,7 +122,7 @@ const MainSide = () => {
 
 
                 {/* <!-- newsfeed start here *************** --> */}
-                <div className="newsfeedCon">
+                {/* <div className="newsfeedCon">
                     <div className="newsfeed">
                         <div className="header">
                             <div className="profile">
@@ -196,7 +210,102 @@ const MainSide = () => {
 
 
                     </div>
-                </div>
+                </div> */}
+
+                {
+                    posts.map(user => {
+                        const { id, post } = user;
+                        return (
+                            <div className="newsfeedCon">
+                                <div className="newsfeed">
+                                    <div className="header">
+                                        <div className="profile">
+                                            <img style={{ width: '50px', height: '50px', borderRadius: '50%' }} src="https://media.licdn.com/dms/image/C4D03AQE-NHNMs2SOQA/profile-displayphoto-shrink_100_100/0/1655985618559?e=1681948800&amp;v=beta&amp;t=aBNl79AGLra-LwLOujv_ThaAz5tDEqBJbuBan_M8hYI" loading="lazy" alt="Shamuel Molla" id="ember2440" class="presence-entity__image  ivm-view-attr__img--centered EntityPhoto-circle-3 update-components-actor__avatar-image EntityPhoto-circle-3 lazy-image ember-view" />
+                                            <h6>
+                                                Shamuel Molla
+                                                <span> #1 Front End Developer🚀
+                                                </span>
+                                            </h6>
+                                        </div>
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24"
+                                            data-supported-dps="24x24"
+                                            fill="currentColor"
+                                            className="mercado-match"
+                                            width="24"
+                                            height="24"
+                                            focusable="false"
+                                        >
+                                            <path
+                                                d="M14 12a2 2 0 11-2-2 2 2 0 012 2zM4 10a2 2 0 102 2 2 2 0 00-2-2zm16 0a2 2 0 102 2 2 2 0 00-2-2z"
+                                            ></path>
+                                        </svg>
+
+
+                                    </div>
+                                    <div className="box">
+                                        <p>
+                                            {post}
+                                        </p>
+                                        <img
+                                            src="https://media.licdn.com/dms/image/C4E22AQGkQIZgryL_mg/feedshare-shrink_800/0/1675605639925?e=1678320000&v=beta&t=YschkzLd4Gj6vTzKD8L04pv9HJiS0x9RPc4Tg8LNjNU"
+                                            alt=""
+                                        />
+
+                                        <div className="media">
+                                            <div className="items">
+                                                <i className="fa-regular fa-thumbs-up fa-lg"></i>
+                                                <h6>Like</h6>
+                                            </div>
+                                            <div className="items">
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 24 24"
+                                                    data-supported-dps="24x24"
+                                                    fill="currentColor"
+                                                    className="mercado-match"
+                                                    width="24"
+                                                    height="24"
+                                                    focusable="false"
+                                                >
+                                                    <path
+                                                        d="M7 9h10v1H7zm0 4h7v-1H7zm16-2a6.78 6.78 0 01-2.84 5.61L12 22v-4H8A7 7 0 018 4h8a7 7 0 017 7zm-2 0a5 5 0 00-5-5H8a5 5 0 000 10h6v2.28L19 15a4.79 4.79 0 002-4z"
+                                                    ></path>
+                                                </svg>
+                                                <h6>Comment</h6>
+                                            </div>
+                                            <div className="items">
+                                                <i className="fa-solid fa-repeat fa-lg"></i>
+
+                                                <h6>Repost</h6>
+                                            </div>
+                                            <div className="items">
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 24 24"
+                                                    data-supported-dps="24x24"
+                                                    fill="currentColor"
+                                                    className="mercado-match"
+                                                    width="24"
+                                                    height="24"
+                                                    focusable="false"
+                                                >
+                                                    <path
+                                                        d="M21 3L0 10l7.66 4.26L16 8l-6.26 8.34L14 24l7-21z"
+                                                    ></path>
+                                                </svg>
+                                                <h6>Send</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        );
+                    })
+                }
             </main>
 
         </div>
