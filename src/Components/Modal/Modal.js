@@ -252,7 +252,7 @@ const Modal = ({ toggleModal }) => {
 
             </div>)}
 
-            <h1>Is it working ? </h1>
+
 
         </div>
     );
