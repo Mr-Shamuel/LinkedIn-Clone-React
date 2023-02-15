@@ -217,7 +217,7 @@ const Modal = ({ toggleModal }) => {
 
 
                                                 {
-                                                    (Imagefiles.length != 0 || post.length != 0) ?
+                                                    (Imagefiles.length !== 0 || post.length !== 0) ?
                                                         <input type="submit" value="Post" />
                                                         :
                                                         <input disabled type="submit" value="Post" style={{ color: "grey", background: '#e2e2e2', cursor: 'not-allowed' }} />
