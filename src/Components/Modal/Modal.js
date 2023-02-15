@@ -7,6 +7,9 @@ import './Modal.css'
 const Modal = ({ toggleModal }) => {
     const [post, setPost] = useState('');
     const [Imagefiles, setImageFiles] = useState("")
+    console.log("Post : ", post.length)
+    console.log("Images : ", Imagefiles)
+    console.log("Images len : ", Imagefiles.length)
 
 
     const inputRef = useRef(null);
@@ -15,12 +18,20 @@ const Modal = ({ toggleModal }) => {
     const handleSubmit = (e) => {
 
         // text 
-        // axios.post('https://63ac4337da81ba97617eebed.mockapi.io/LinkedIn', {
-        //     post: post,
-        // })
-        //     .then((response) => {
-        //         toggleModal();
-        //     });
+
+        if (post.length > 0 && Imagefiles.length === 0) {
+            axios.post('https://63ac4337da81ba97617eebed.mockapi.io/LinkedIn', {
+                //making object
+                desc: post,
+                post_img: " "
+
+
+            })
+                .then((response) => {
+                    toggleModal();
+                });
+        }
+
 
 
         // images 
@@ -36,18 +47,37 @@ const Modal = ({ toggleModal }) => {
             .then((res) => {
                 // console.log('Image upload successful:', res.data.secure_url);
 
-                const postData = { //making object
-                    desc: post,
-                    post_img: res.data.secure_url
+                if (post.length !== 0) {
+                    const postData = { //making object
+                        desc: post,
+                        post_img: res.data.secure_url
+
+                    }
+
+                    //sending post description to the server
+                    axios.post('https://63ac4337da81ba97617eebed.mockapi.io/LinkedIn', postData)
+                        .then((response) => {
+                            console.log(response.data)
+                            toggleModal();
+                        });
+
+                } else {
+
+                    const postData = { //making object
+                        desc: "",
+                        post_img: res.data.secure_url
+
+                    }
+
+                    //sending post description to the server
+                    axios.post('https://63ac4337da81ba97617eebed.mockapi.io/LinkedIn', postData)
+                        .then((response) => {
+                            console.log(response.data)
+                            toggleModal();
+                        });
+
 
                 }
-
-                //sending post description to the server
-                axios.post('https://63ac4337da81ba97617eebed.mockapi.io/LinkedIn', postData)
-                    .then((response) => {
-                        console.log(response.data)
-                        toggleModal();
-                    });
 
             })
             .catch((error) => {
@@ -118,17 +148,18 @@ const Modal = ({ toggleModal }) => {
 
 
                                             </div>
-                                            <div className="input_icon x2">
+                                            <div onClick={(e) => (inputRef.current.click())} className="input_icon x2">
                                                 <span className="icon__text">
                                                     Add a video
                                                 </span>
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" className="mercado-match" width="24" height="24" focusable="false">
                                                     <path d="M19 4H5a3 3 0 00-3 3v10a3 3 0 003 3h14a3 3 0 003-3V7a3 3 0 00-3-3zm-9 12V8l6 4z"></path>
                                                 </svg>
+                                                <input type="file" onChange={(e) => setImageFiles(e.target.files[0])} ref={inputRef} hidden />
 
 
                                             </div>
-                                            <div className="input_icon">
+                                            <div onClick={(e) => (inputRef.current.click())} className="input_icon">
                                                 <span className="icon__text">
                                                     Add a document
                                                 </span>
@@ -136,6 +167,7 @@ const Modal = ({ toggleModal }) => {
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" className="mercado-match" width="24" height="24" focusable="false">
                                                     <path d="M3 3v15a3 3 0 003 3h9v-6h6V3zm9 8H6v-1h6zm6-3H6V7h12zm-2 8h5l-5 5z"></path>
                                                 </svg>
+                                                <input type="file" onChange={(e) => setImageFiles(e.target.files[0])} ref={inputRef} hidden />
 
                                             </div>
                                             <div className="input_icon">
@@ -171,16 +203,26 @@ const Modal = ({ toggleModal }) => {
                                                         <path d="M15.1 12.63L13 11.42V7a1 1 0 00-2 0v5a1 1 0 00.51.85l2.59 1.52a1 1 0 101-1.74z"></path>
                                                     </g>
                                                 </svg>
-                                                {/* <h6>Post</h6> */}
-                                                {/* <input type="submit" value="Post" disabled='true' /> */}
 
-                                                {
-                                                    (post.length === 0) ?
+
+                                                {/* {
+                                                    (Imagefiles.length === 0 ) ?
                                                         <input disabled type="submit" value="Post" style={{ color: "grey", background: '#e2e2e2', cursor: 'not-allowed' }} />
                                                         :
                                                         <input type="submit" value="Post" />
 
-                                                    // <input type="submit" value="Post" disabled='true' />
+
+                                                } */}
+
+
+
+                                                {
+                                                    (Imagefiles.length != 0 || post.length != 0) ?
+                                                        <input type="submit" value="Post" />
+                                                        :
+                                                        <input disabled type="submit" value="Post" style={{ color: "grey", background: '#e2e2e2', cursor: 'not-allowed' }} />
+
+
                                                 }
 
 

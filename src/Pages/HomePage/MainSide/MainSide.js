@@ -38,15 +38,28 @@ const MainSide = () => {
                         />
 
                         <input
-                            type="button"
+                            className='start_a_post'
+                            type="text"
                             name="search"
                             id="search"
                             placeholder="Start a post"
                             onClick={toggleModal}
                         />
+
+
+                        {/* <input
+                            className='start_a_post'
+                            type="button"
+
+                            name="search"
+                            id="search"
+                            placeholder="Start a post"
+                            value="Start a post"
+                            onClick={toggleModal}
+                        /> */}
                     </div>
                     <div className="media">
-                        <div className="items">
+                        <div className="items" onClick={toggleModal}>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24"
@@ -62,8 +75,9 @@ const MainSide = () => {
                                 ></path>
                             </svg>
                             <h6>Photo</h6>
+
                         </div>
-                        <div className="items">
+                        <div className="items" onClick={toggleModal}>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24"
@@ -80,7 +94,7 @@ const MainSide = () => {
                             </svg>
                             <h6>Video</h6>
                         </div>
-                        <div className="items">
+                        <div className="items" onClick={toggleModal}>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24"
@@ -97,7 +111,7 @@ const MainSide = () => {
                             </svg>
                             <h6>Job</h6>
                         </div>
-                        <div className="items">
+                        <div className="items" onClick={toggleModal}>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24"
