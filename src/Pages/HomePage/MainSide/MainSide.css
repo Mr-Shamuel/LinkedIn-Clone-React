@@ -111,12 +111,6 @@
     border-radius: 0.8rem;
   }
 
-  /* .left_sidebar,
-  .left_sidebar_Discovery {
-    background-color: red;
-    border-radius: 0.8rem;
-  } */
-
   main .post,
   main .newsfeed {
     border-radius: 0.8rem;
@@ -169,10 +163,7 @@
   }
 
   main .newsfeedCon .media {
-    margin: 5px;
-  }
-  main .newsfeedCon .media {
-    margin: 0;
+    margin: 0.2rem 0.5rem;
     gap: 0rem;
   }
   main .newsfeedCon .media .items {
@@ -199,5 +190,10 @@
     border-radius: 0.8rem;
     background-color: #ffffff;
     padding: 5px 0px;
+  }
+
+  main .newsfeedCon .media {
+    margin: 0rem 1rem;
+    gap: 0rem;
   }
 }

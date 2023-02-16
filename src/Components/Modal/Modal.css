@@ -185,6 +185,14 @@
   transition: 0.4s ease;
   font-weight: 500;
 }
+
+.input_iconComment svg,
+.modal .editor_con .left .input_icon svg,
+.modal .editor_con .right .input_icon svg {
+  color: rgb(100, 100, 100);
+  display: flex;
+}
+
 .modal .editor_con .right .input_icon button:hover {
   background-color: #04274a;
 }

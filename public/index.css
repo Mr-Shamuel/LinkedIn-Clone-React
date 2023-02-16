@@ -542,9 +542,13 @@ main .newsfeedCon .media .items h6 {
   color: black;
   font-weight: 400;
 }
+main .newsfeedCon .media .items i {
+  color: rgb(100, 100, 100);
+}
 main .newsfeedCon .media .items svg {
-  height: 1.8rem;
-  width: 1.8rem;
+  height: 1.5rem;
+  width: 1.5rem;
+  color: rgb(100, 100, 100);
 }
 main .newsfeedCon .media .items:hover {
   background-color: rgb(231, 230, 230);
