@@ -8,9 +8,7 @@ const MainSide = () => {
     const [modal, setModal] = useState(false);
     const [posts, setPosts] = useState([]);
 
-    const toggleModal = () => {
-        setModal(!modal)
-    }
+
 
     //getting post 
     const gettigPosts = () => {
@@ -18,10 +16,22 @@ const MainSide = () => {
             .then(res => setPosts(res.data))
     }
 
+    // useEffect(() => {
+
+    //     gettigPosts();
+    // }) //here will rerander because no dependencies given
+
+
+
+    const toggleModal = () => {
+
+        setModal(!modal)
+    }
+
     useEffect(() => {
 
         gettigPosts();
-    })
+    }, [modal])
 
 
     return (
@@ -131,7 +141,8 @@ const MainSide = () => {
                     </div>
                 </div>
 
-                {modal && <Modal modals={modal} toggleModal={toggleModal} />}
+                {/* {modal && <Modal toggleModal={toggleModal} />} */}
+                {modal && <Modal toggleModal={toggleModal} />}
 
 
 

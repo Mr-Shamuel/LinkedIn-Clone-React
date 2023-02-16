@@ -3,18 +3,18 @@ import './Preloading.css'
 const Preloading = () => {
     return (
         <div className='preLoadingcon'>
-            <div class="container">
-                <div class="part1">
+            <div className="container">
+                <div className="part1">
                     Linked
                 </div>
-                <div class="part2">
+                <div className="part2">
                     in
                 </div>
             </div>
 
 
-            <div class="loader">
-                <div class="loading">
+            <div className="loader">
+                <div className="loading">
                 </div>
             </div>
 

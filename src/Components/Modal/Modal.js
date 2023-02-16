@@ -8,10 +8,12 @@ const Modal = ({ toggleModal }) => {
     const [post, setPost] = useState('');
     const [Imagefiles, setImageFiles] = useState("");
     const [isLoading, setIsLoading] = useState(false)
+    const [isdisabled, setIsDisabled] = useState(false)
+    console.log(toggleModal)
 
-    console.log("Post : ", post.length)
-    console.log("Images : ", Imagefiles)
-    console.log("Images len : ", Imagefiles.length)
+    // console.log("Post : ", post.length)
+    // console.log("Images : ", Imagefiles)
+    // console.log("Images len : ", Imagefiles.length)
 
 
     const inputRef = useRef(null);
@@ -20,6 +22,7 @@ const Modal = ({ toggleModal }) => {
     const handleSubmit = (e) => {
         //spinner
         setIsLoading(true)
+        setIsDisabled(true)
         // text 
 
         if (post.length > 0 && Imagefiles.length === 0) {
@@ -78,8 +81,6 @@ const Modal = ({ toggleModal }) => {
                             console.log(response.data)
                             toggleModal();
                         });
-
-
                 }
 
             })
@@ -93,8 +94,6 @@ const Modal = ({ toggleModal }) => {
 
     return (
         <div className='modalCon'>
-
-
             {(<div className="modal">
                 <div className="overlay" onClick={toggleModal}></div>
                 <div className="modal-content">
@@ -218,7 +217,11 @@ const Modal = ({ toggleModal }) => {
 
                                                 {
                                                     (Imagefiles.length !== 0 || post.length !== 0) ?
-                                                        <button type="submit" >{isLoading && <div className="spinner"></div>}  Post</button>
+                                                        // <button type="submit" >{isdisabled && isLoading && <div className="spinner" style={{ cursor: 'not-allowed' }}  ></div>}  Post</button>
+
+                                                        isdisabled ?
+                                                            <button disabled style={{ cursor: 'not-allowed' }} type="submit" >{isdisabled && isLoading && <div className="spinner"   ></div>}  Post</button> :
+                                                            <button type="submit" >{isdisabled && isLoading && <div className="spinner"    ></div>}  Post</button>
 
                                                         :
                                                         <button disabled type="submit" value="Post" style={{ color: "grey", background: '#e2e2e2', cursor: 'not-allowed' }}>Post</button>
