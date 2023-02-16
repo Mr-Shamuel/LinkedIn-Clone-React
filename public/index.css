@@ -512,8 +512,14 @@ main .box p {
   padding: 10px 20px;
   font-weight: 200px;
 }
-main .newsfeedCon img {
+/* main .newsfeedCon img {
   width: 100%;
+} */
+
+main .newsfeedCon .box img {
+  /* width: 100%; */
+
+  max-width: 100%;
 }
 
 main .newsfeedCon .media {

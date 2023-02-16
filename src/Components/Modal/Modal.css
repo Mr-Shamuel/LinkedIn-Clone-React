@@ -147,9 +147,6 @@
   background-color: #e2e2e2;
   border-radius: 50%;
 }
-.editor_con .selectMedia .left .input_icon span {
-  /* display: none; */
-}
 
 .input_iconComment {
   display: flex;
@@ -177,7 +174,7 @@
   align-items: center;
   gap: 0.5rem;
 }
-.modal .editor_con .right .input_icon input {
+.modal .editor_con .right .input_icon button {
   border: none;
   outline: none;
   background-color: #0a66c2;
@@ -185,6 +182,37 @@
   padding: 3px 12px;
   border-radius: 5rem;
   cursor: pointer;
+  transition: 0.4s ease;
+  font-weight: 500;
+}
+.modal .editor_con .right .input_icon button:hover {
+  background-color: #04274a;
+}
+.modal .editor_con .right .input_icon button {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+}
+
+/* spiner setting  */
+.spinner {
+  border: 2px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 2px solid #935833;
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* making a tultip  */
@@ -207,4 +235,10 @@
 
 .editor_con .selectMedia .left :hover span {
   visibility: visible;
+}
+
+@media screen and (min-width: 320px) and (max-width: 530px) {
+  .modal-content {
+    width: auto;
+  }
 }

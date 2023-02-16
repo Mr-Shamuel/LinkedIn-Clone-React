@@ -6,7 +6,8 @@ import './Modal.css'
 
 const Modal = ({ toggleModal }) => {
     const [post, setPost] = useState('');
-    const [Imagefiles, setImageFiles] = useState("")
+    const [Imagefiles, setImageFiles] = useState("");
+    const [isLoading, setIsLoading] = useState(false)
 
     console.log("Post : ", post.length)
     console.log("Images : ", Imagefiles)
@@ -17,7 +18,8 @@ const Modal = ({ toggleModal }) => {
 
     //uploading text and image
     const handleSubmit = (e) => {
-
+        //spinner
+        setIsLoading(true)
         // text 
 
         if (post.length > 0 && Imagefiles.length === 0) {
@@ -210,22 +212,17 @@ const Modal = ({ toggleModal }) => {
                                                 </svg>
 
 
-                                                {/* {
-                                                    (Imagefiles.length === 0 ) ?
-                                                        <input disabled type="submit" value="Post" style={{ color: "grey", background: '#e2e2e2', cursor: 'not-allowed' }} />
-                                                        :
-                                                        <input type="submit" value="Post" />
 
 
-                                                } */}
-
-
+                                                {/* <input type="submit" value="Post" /> */}
 
                                                 {
                                                     (Imagefiles.length !== 0 || post.length !== 0) ?
-                                                        <input type="submit" value="Post" />
+                                                        <button type="submit" >{isLoading && <div className="spinner"></div>}  Post</button>
+
                                                         :
-                                                        <input disabled type="submit" value="Post" style={{ color: "grey", background: '#e2e2e2', cursor: 'not-allowed' }} />
+                                                        <button disabled type="submit" value="Post" style={{ color: "grey", background: '#e2e2e2', cursor: 'not-allowed' }}>Post</button>
+                                                    // <button disabled type="submit" value="Post" style={{ color: "grey", background: '#e2e2e2', cursor: 'not-allowed' }} />
 
 
                                                 }
