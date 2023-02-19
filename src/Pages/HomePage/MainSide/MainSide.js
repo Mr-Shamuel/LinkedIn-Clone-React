@@ -3,27 +3,24 @@ import './MainSide.css';
 import Modal from '../../../Components/Modal/Modal';
 import '../../../Components/Modal/Modal.css'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 const MainSide = () => {
 
     const [modal, setModal] = useState(false);
     const [posts, setPosts] = useState([]);
 
 
-
+    const navigate = useNavigate()
     //getting post 
     const gettigPosts = () => {
         axios.get('https://63f19d065b7cf4107e33fd7d.mockapi.io/Linkedin')
             .then(res => setPosts(res.data))
     }
 
-    // useEffect(() => {
-
-    //     gettigPosts();
-    // }) //here will rerander because no dependencies given
-
 
 
     const toggleModal = () => {
+        navigate('/home')
 
         setModal(!modal)
     }
@@ -54,6 +51,8 @@ const MainSide = () => {
                             id="search"
                             placeholder="Start a post"
                             onClick={toggleModal}
+
+
                         />
 
 
@@ -146,96 +145,7 @@ const MainSide = () => {
 
 
 
-                {/* <!-- newsfeed start here *************** --> */}
-                {/* <div className="newsfeedCon">
-                    <div className="newsfeed">
-                        <div className="header">
-                            <div className="profile">
-                                <img
-                                    src="https://media.licdn.com/dms/image/C4E0BAQFYYvw5asgdjQ/company-logo_100_100/0/1570240591021?e=1683763200&v=beta&t=PdlFHIx6NarWFfTYE1xXWrEOSq9OdBJtzmbwd-Cpt0I"
-                                    alt=""
-                                />
-                                <h6>
-                                    Project Management Institute
-                                    <span> Promoted</span>
-                                </h6>
-                            </div>
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 24 24"
-                                data-supported-dps="24x24"
-                                fill="currentColor"
-                                className="mercado-match"
-                                width="24"
-                                height="24"
-                                focusable="false"
-                            >
-                                <path
-                                    d="M14 12a2 2 0 11-2-2 2 2 0 012 2zM4 10a2 2 0 102 2 2 2 0 00-2-2zm16 0a2 2 0 102 2 2 2 0 00-2-2z"
-                                ></path>
-                            </svg>
 
-
-                        </div>
-                        <div className="box">
-                            <p>
-                                Do you have an innovative practice ?
-                            </p>
-                            <img
-                                src="https://media.licdn.com/dms/image/C4E22AQGkQIZgryL_mg/feedshare-shrink_800/0/1675605639925?e=1678320000&v=beta&t=YschkzLd4Gj6vTzKD8L04pv9HJiS0x9RPc4Tg8LNjNU"
-                                alt=""
-                            />
-
-                            <div className="media">
-                                <div className="items">
-                                    <i className="fa-regular fa-thumbs-up fa-lg"></i>
-                                    <h6>Like</h6>
-                                </div>
-                                <div className="items">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 24 24"
-                                        data-supported-dps="24x24"
-                                        fill="currentColor"
-                                        className="mercado-match"
-                                        width="24"
-                                        height="24"
-                                        focusable="false"
-                                    >
-                                        <path
-                                            d="M7 9h10v1H7zm0 4h7v-1H7zm16-2a6.78 6.78 0 01-2.84 5.61L12 22v-4H8A7 7 0 018 4h8a7 7 0 017 7zm-2 0a5 5 0 00-5-5H8a5 5 0 000 10h6v2.28L19 15a4.79 4.79 0 002-4z"
-                                        ></path>
-                                    </svg>
-                                    <h6>Comment</h6>
-                                </div>
-                                <div className="items">
-                                    <i className="fa-solid fa-repeat fa-lg"></i>
-
-                                    <h6>Repost</h6>
-                                </div>
-                                <div className="items">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 24 24"
-                                        data-supported-dps="24x24"
-                                        fill="currentColor"
-                                        className="mercado-match"
-                                        width="24"
-                                        height="24"
-                                        focusable="false"
-                                    >
-                                        <path
-                                            d="M21 3L0 10l7.66 4.26L16 8l-6.26 8.34L14 24l7-21z"
-                                        ></path>
-                                    </svg>
-                                    <h6>Send</h6>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </div> */}
 
                 {
                     posts.map(post => {

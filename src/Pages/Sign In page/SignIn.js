@@ -1,10 +1,76 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import auth from '../../Firebase/firebase.Config';
 import './sign.css'
+import { RotatingLines } from 'react-loader-spinner'
 
 const SignIn = () => {
+
+    const navigate = useNavigate();
+
+    //email signin
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleEmail = (e) => {
+        setEmail(e.target.value)
+    }
+    const handlePassword = (e) => {
+        setPassword(e.target.value)
+    }
+    const [signInWithEmailAndPassword, user1, loading1, error1,] = useSignInWithEmailAndPassword(auth);
+    const handleSubmit = (e) => {
+        signInWithEmailAndPassword(email, password)
+        e.preventDefault();
+    }
+
+
+    // location (where to go)
+    const location = useLocation();
+    const form = location?.state?.from?.pathname || '/';
+
+    //google signing
+    const [GoogleSignIn] = useSignInWithGoogle(auth);
+
+
+    const HandleGoogleSignIn = () => {
+        GoogleSignIn()
+            .then(() => {
+                navigate(form, { replace: true })
+
+            })
+    }
+
+
+    if (user1) {
+        navigate(form, { replace: true }) //if user then navigate to homepage 
+    }
+    //spinner 
+    if (loading1) {
+        return <div className="spinners" style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100vh',
+            width: '100%',
+
+        }}>
+            <RotatingLines
+
+
+                strokeColor="grey"
+                strokeWidth="4"
+                animationDuration=".75"
+                width="100"
+                visible={true}
+            />
+        </div>
+    }
+
     return (
         <div className="signinCOn">
+
             <section>
                 <div className="svg">
                     <svg
@@ -60,45 +126,67 @@ const SignIn = () => {
                         </g>
                     </svg>
                 </div>
-                <form>
-                    <h4>Sign in</h4>
-                    <p className="stayUpdate">Stay updated on your professional world</p>
-                    <div className="form_group">
-                        <input
-                            type="email"
-                            id="email"
-                            name="'email"
-                            placeholder="Email or Phone"
-                        />
-                    </div>
 
-                    <div className="form_group">
-                        <input
-                            type="password"
-                            name="passord"
-                            id="password"
-                            placeholder="Password"
-                        />
-                    </div>
+                <div className="formCon">
+                    <form onSubmit={handleSubmit}>
+                        <h4>Sign in</h4>
+                        <p className="stayUpdate">Stay updated on your professional world</p>
+                        <div className="form_group">
+                            <input
+                                type="email"
+                                id="email"
+                                name="'email"
+                                placeholder="Email or Phone"
+                                onBlur={handleEmail}
+                            />
+                        </div>
 
-                    <p className="forget"><Link to='/'>Forgot password?</Link>.</p>
+                        <div className="form_group">
+                            <input
+                                type="password"
+                                name="passord"
+                                id="password"
+                                placeholder="Password"
+                                onBlur={handlePassword}
+                            />
+                        </div>
 
-                    <button className="agreeBtn">SignIn</button>
+                        <p className="forget"><Link to='/'>Forgot password?</Link>.</p>
 
-                    <div className="devider">
-                        <div className="line"></div>
-                        <h4>or</h4>
-                        <div className="line"></div>
-                    </div>
+                        {
+                            error1 && <p style={{ color: 'red', fontSize: '12px', marginBottom: '10px' }}>{error1.message}</p>
+                        }
+                        <button className="agreeBtn">SignIn</button>
 
-                    <button className="AppleBtn">
-                        <img width="20px"
-                            src="https://e7.pngegg.com/pngimages/109/296/png-clipart-apple-logo-apple-heart-logo-thumbnail.png"
-                            alt="Apple Btn"
-                        />
-                        Sign in with Apple
-                    </button>
-                </form>
+                        <div className="devider">
+                            <div className="line"></div>
+                            <h4>or</h4>
+                            <div className="line"></div>
+                        </div>
+
+
+
+
+                        <button className="googleBtn" onClick={HandleGoogleSignIn}>
+                            <img width="25px"
+                                src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png"
+                                alt="google Btn"
+                            />
+                            Continue with Google
+                        </button>
+
+
+                        <button className="AppleBtn" onClick={HandleGoogleSignIn}>
+                            <img width="20px"
+                                src="https://e7.pngegg.com/pngimages/109/296/png-clipart-apple-logo-apple-heart-logo-thumbnail.png"
+                                alt="Apple Btn"
+                            />
+                            Sign in with Apple
+                        </button>
+                    </form>
+
+
+                </div>
                 <p className="help">
                     New to LinkedIn?
                     <Link to='/signup'>Join now</Link>

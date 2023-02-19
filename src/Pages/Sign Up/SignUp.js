@@ -4,6 +4,7 @@ import { useSignInWithGoogle, useCreateUserWithEmailAndPassword } from 'react-fi
 import auth from '../../Firebase/firebase.Config';
 import axios from 'axios';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { RotatingLines } from 'react-loader-spinner'
 
 
 const SignUp = () => {
@@ -11,7 +12,7 @@ const SignUp = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [createUserWithEmailAndPassword, user, loading, error2,] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+    const [createUserWithEmailAndPassword, user, loading2, error2,] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
 
     const handleEmail = (e) => { setEmail(e.target.value) }
     const handlePassword = (e) => { setPassword(e.target.value) }
@@ -36,10 +37,7 @@ const SignUp = () => {
                     .then((response) => {
                         console.log(response.data)
                     });
-
             })
-
-
         e.preventDefault();
     }
 
@@ -81,6 +79,27 @@ const SignUp = () => {
         navigate(form, { replace: true })
     }
 
+    //spinner 
+    if (loading2) {
+        return <div className="spinners" style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100vh',
+            width: '100%',
+
+        }}>
+            <RotatingLines
+
+
+                strokeColor="grey"
+                strokeWidth="4"
+                animationDuration=".75"
+                width="100"
+                visible={true}
+            />
+        </div>
+    }
 
 
     return (
@@ -187,26 +206,25 @@ const SignUp = () => {
                         <div className="line"></div>
                     </div>
 
+                    <div className="google"  >
+                        {/* <button className="googleBtn" onClick={handleGoogleSignIn}> */}
+                        <button className="googleBtn" onClick={handleGoogleSignIn}>
+                            <img width="25px"
+                                src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png"
+                                alt="google Btn"
+                            />
+                            Continue with Google
+                        </button>
+                    </div>
+
+                    <p className="alreadySign">
+                        Already on LinkedIn?
+                        <Link to='/signin'> Sign in</Link>
+                    </p>
 
                 </form>
 
-                <div className="google"  >
-                    {/* <button className="googleBtn" onClick={handleGoogleSignIn}> */}
-                    <button className="googleBtn" onClick={handleGoogleSignIn}>
-                        <img width="25px"
-                            src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png"
-                            alt="google Btn"
-                        />
-                        Continue with Google
-                    </button>
-                </div>
 
-
-
-                <p className="alreadySign">
-                    Already on LinkedIn?
-                    <Link to='/signin'> Sign in</Link>
-                </p>
 
                 <p className="help">
                     Looking to create a page for a business? <Link to='/'>Get help</Link>

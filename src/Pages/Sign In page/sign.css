@@ -15,6 +15,8 @@
 .signinCOn {
   background-color: #ffffff;
   text-align: center;
+  /* position: relative; */
+  min-height: 100%;
 }
 .signinCOn .svg {
   width: 100%;
@@ -140,7 +142,8 @@
   font-weight: 300;
 }
 
-.signinCOn form .AppleBtn {
+.signinCOn form .AppleBtn,
+.signinCOn form .googleBtn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -156,6 +159,10 @@
 }
 
 .signinCOn form .AppleBtn:hover {
+  box-shadow: 0 0 0 2px #2b2c2d;
+  background-color: #eaeaea;
+}
+.signinCOn form .googleBtn:hover {
   box-shadow: 0 0 0 2px #2b2c2d;
   background-color: #eaeaea;
 }
@@ -185,7 +192,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
+  /* position: absolute; */
   bottom: 0;
   background-color: #ffffff;
   width: 100%;

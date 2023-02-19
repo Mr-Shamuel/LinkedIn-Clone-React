@@ -2,6 +2,7 @@
   background-color: #f3f2ef;
   text-align: center;
   position: relative;
+  height: 100vh;
 }
 .signUpCon .svg {
   width: 100%;

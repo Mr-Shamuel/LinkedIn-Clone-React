@@ -5,6 +5,9 @@ import SignIn from "./Pages/Sign In page/SignIn";
 import SignUp from "./Pages/Sign Up/SignUp";
 import { useEffect, useState } from "react";
 import Preloading from "./Components/Loding/PreLoading/Preloading";
+import Modal from "./Components/Modal/Modal";
+import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
+import MainSide from "./Pages/HomePage/MainSide/MainSide";
 
 
 
@@ -26,7 +29,18 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/signup' element={<SignUp />} />
           <Route path='/signin' element={<SignIn />} />
+
+          <Route path='/home' element={
+            <PrivateRoute>
+              <Home />
+            </PrivateRoute>
+          } />
+
           <Route path='*' element={<NotFound />} />
+
+
+
+
         </Routes>)}
 
       {/* <Routes>
