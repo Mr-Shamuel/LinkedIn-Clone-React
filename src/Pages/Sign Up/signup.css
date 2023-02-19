@@ -1,6 +1,7 @@
 .signUpCon {
   background-color: #f3f2ef;
   text-align: center;
+  position: relative;
 }
 .signUpCon .svg {
   width: 100%;
@@ -73,7 +74,8 @@
   text-decoration: underline;
 }
 
-.signUpCon form button {
+.signUpCon form button,
+.signUpCon button {
   width: 100%;
   padding: 0.7rem;
   border-radius: 100vw;
@@ -112,7 +114,7 @@
   font-weight: 300;
 }
 
-.signUpCon form .googleBtn {
+.signUpCon .googleBtn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -126,12 +128,12 @@
   padding: 0.4rem 1rem;
 }
 
-.signUpCon form .google {
+.signUpCon .google {
   padding: 0rem 1rem;
   margin-top: 1.5rem;
 }
 
-.signUpCon form .googleBtn:hover {
+.signUpCon .googleBtn:hover {
   box-shadow: 0 0 0 1px #5c97d2;
   background-color: #d7e2ec;
 }
@@ -193,6 +195,15 @@
   color: #0a66c2;
 }
 
+.signUpCon .errormsg {
+  color: red;
+  margin-top: 5px;
+}
+.signUpCon .successmsg {
+  color: green;
+  margin-top: 5px;
+}
+
 @media only screen and (max-width: 1160px) {
   .signUpCon {
     background-color: #ffff;
@@ -225,7 +236,7 @@
   .signUpCon .devider {
     display: none;
   }
-  .signUpCon form .google {
+  .signUpCon .google {
     padding: 0rem 4rem;
     margin-top: 1.5rem;
   }

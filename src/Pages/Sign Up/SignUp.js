@@ -1,9 +1,92 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import './signup.css';
+import { useSignInWithGoogle, useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import auth from '../../Firebase/firebase.Config';
+import axios from 'axios';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+
+
 const SignUp = () => {
+    const [signInWithGoogle, error,] = useSignInWithGoogle(auth);
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [createUserWithEmailAndPassword, user, loading, error2,] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+
+    const handleEmail = (e) => { setEmail(e.target.value) }
+    const handlePassword = (e) => { setPassword(e.target.value) }
+
+    const navigate = useNavigate();
+
+    // sign in with email and password
+    const handleSubmit = async (e) => {
+        createUserWithEmailAndPassword(email, password)
+            .then(() => {
+
+                const usersData = {
+
+                    email: email,
+                    password: password,
+                    photoURL: " "
+                }
+
+                //posting data to server 
+                axios.post('https://63f19d065b7cf4107e33fd7d.mockapi.io/Users', usersData)
+
+                    .then((response) => {
+                        console.log(response.data)
+                    });
+
+            })
+
+
+        e.preventDefault();
+    }
+
+
+
+    // google signin 
+    const handleGoogleSignIn = (e) => {
+
+        signInWithGoogle()
+            .then((res) => {
+                // if success then  data will post to server (mock api)
+                const name = res.user.displayName;
+                const usersData = {
+                    name,
+                    email: res.user.email,
+                    photoURL: res.user.photoURL
+                }
+
+
+                axios.post('https://63f19d065b7cf4107e33fd7d.mockapi.io/Users', usersData)
+                    .then((result) => {
+                        console.log(result.data)
+                        navigate(form, { replace: true })
+                    })
+
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        e.preventDefault()
+    }
+
+
+    // redirect or location 
+    const location = useLocation();
+    const form = location?.state?.pathname || '/';
+
+    if (user) {
+        navigate(form, { replace: true })
+    }
+
+
+
     return (
         <div className='signUpCon'>
+
+
             <section>
                 <div className="svg">
                     <svg
@@ -62,15 +145,15 @@ const SignUp = () => {
                 </div>
                 <h2>Make the most of your professional life</h2>
 
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div className="form_group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="'email" />
+                        <label  >Email</label>
+                        <input onBlur={handleEmail} type="email" id="email" name="'email" />
                     </div>
 
                     <div className="form_group">
-                        <label for="password">Password (6 or more characters)</label>
-                        <input type="password" name="passord" id="password" />
+                        <label  >Password (6 or more characters)</label>
+                        <input onBlur={handlePassword} type="password" name="passord" id="password" />
                     </div>
 
                     <p>
@@ -79,7 +162,24 @@ const SignUp = () => {
                         <Link to='/'>Cookie Policy</Link>.
                     </p>
 
-                    <button className="agreeBtn">Agree & Join</button>
+                    <button type='submit' className="agreeBtn">Agree & Join</button>
+
+                    {/* shwoing message error or success  */}
+
+                    {
+                        user && <p className='text-success text-center'>User successfully created</p>
+                    }
+
+
+                    {
+                        error && <p className=' errormsg'>{error.message}</p>
+
+                    }
+                    {
+                        error2 && <p className=' errormsg'>{error2.message}</p>
+
+                    }
+
 
                     <div className="devider">
                         <div className="line"></div>
@@ -87,29 +187,33 @@ const SignUp = () => {
                         <div className="line"></div>
                     </div>
 
-                    <div className="google">
-                        <button className="googleBtn">
-                            <img width="25px"
-                                src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png"
-                                alt="google Btn"
-                            />
-                            Continue with Google
-                        </button>
-                    </div>
 
-
-
-                    <p className="alreadySign">
-                        Already on LinkedIn?
-                        <Link to='/signin'> Sign in</Link>
-                    </p>
                 </form>
+
+                <div className="google"  >
+                    {/* <button className="googleBtn" onClick={handleGoogleSignIn}> */}
+                    <button className="googleBtn" onClick={handleGoogleSignIn}>
+                        <img width="25px"
+                            src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png"
+                            alt="google Btn"
+                        />
+                        Continue with Google
+                    </button>
+                </div>
+
+
+
+                <p className="alreadySign">
+                    Already on LinkedIn?
+                    <Link to='/signin'> Sign in</Link>
+                </p>
+
                 <p className="help">
                     Looking to create a page for a business? <Link to='/'>Get help</Link>
                 </p>
             </section>
 
-            <footer>
+            {/* <footer>
                 <div className="copyright">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -166,7 +270,7 @@ const SignUp = () => {
                 <Link to='/'>Guest Controls</Link>
                 <Link to='/'>Community Guidelines</Link>
                 <Link to='/'>Languages</Link>
-            </footer>
+            </footer> */}
 
         </div>
     );
