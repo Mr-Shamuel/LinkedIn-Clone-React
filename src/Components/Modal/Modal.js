@@ -2,11 +2,14 @@
 import axios from 'axios';
 import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './Modal.css'
 
 const Modal = ({ toggleModal }) => {
     const [post, setPost] = useState('');
     const [Imagefiles, setImageFiles] = useState("");
+    const [select, setSelect] = useState("Anyone");
     const [isLoading, setIsLoading] = useState(false)
     const [isdisabled, setIsDisabled] = useState(false)
     console.log(toggleModal)
@@ -14,9 +17,12 @@ const Modal = ({ toggleModal }) => {
     // console.log("Post : ", post.length)
     // console.log("Images : ", Imagefiles)
     // console.log("Images len : ", Imagefiles.length)
+    console.log(select);
+
 
 
     const inputRef = useRef(null);
+
 
     //uploading text and image
     const handleSubmit = (e) => {
@@ -26,10 +32,11 @@ const Modal = ({ toggleModal }) => {
         // text 
 
         if (post.length > 0 && Imagefiles.length === 0) {
-            axios.post('https://63ac4337da81ba97617eebed.mockapi.io/LinkedIn', {
+            axios.post('https://63f19d065b7cf4107e33fd7d.mockapi.io/Linkedin', {
                 //making object
                 desc: post,
-                post_img: " "
+                post_img: " ",
+                privacy: select
 
 
             })
@@ -48,6 +55,7 @@ const Modal = ({ toggleModal }) => {
 
 
 
+
         //first uploading iamge .After upload then the post decription will upload to the server.
         axios.post('https://api.cloudinary.com/v1_1/dx5tmn3oc/image/upload', formData)
             .then((res) => {
@@ -56,12 +64,13 @@ const Modal = ({ toggleModal }) => {
                 if (post.length !== 0) {
                     const postData = { //making object
                         desc: post,
-                        post_img: res.data.secure_url
+                        post_img: res.data.secure_url,
+                        privacy: select
 
                     }
 
                     //sending post description to the server
-                    axios.post('https://63ac4337da81ba97617eebed.mockapi.io/LinkedIn', postData)
+                    axios.post('https://63f19d065b7cf4107e33fd7d.mockapi.io/Linkedin', postData)
                         .then((response) => {
                             console.log(response.data)
                             toggleModal();
@@ -71,12 +80,13 @@ const Modal = ({ toggleModal }) => {
 
                     const postData = { //making object
                         desc: "",
-                        post_img: res.data.secure_url
+                        post_img: res.data.secure_url,
+                        privacy: select
 
                     }
 
                     //sending post description to the server
-                    axios.post('https://63ac4337da81ba97617eebed.mockapi.io/LinkedIn', postData)
+                    axios.post('https://63f19d065b7cf4107e33fd7d.mockapi.io/Linkedin', postData)
                         .then((response) => {
                             console.log(response.data)
                             toggleModal();
@@ -87,6 +97,20 @@ const Modal = ({ toggleModal }) => {
             .catch((error) => {
                 console.error('Image upload failed:', error);
             });
+
+
+        //after posting 
+
+        toast.success('Successfully Posted', {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
 
         e.preventDefault();
     }
@@ -110,12 +134,18 @@ const Modal = ({ toggleModal }) => {
                             <div className="visiblity">
                                 <h6 className='name'>Shamuel Molla</h6>
 
+
+
+
                                 <div className='anyone'>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" data-supported-dps="16x16" fill="currentColor" className="mercado-match" focusable="false">
-                                        <path d="M8 1a7 7 0 107 7 7 7 0 00-7-7zM3 8a5 5 0 011-3l.55.55A1.5 1.5 0 015 6.62v1.07a.75.75 0 00.22.53l.56.56a.75.75 0 00.53.22H7v.69a.75.75 0 00.22.53l.56.56a.75.75 0 01.22.53V13a5 5 0 01-5-5zm6.24 4.83l2-2.46a.75.75 0 00.09-.8l-.58-1.16A.76.76 0 0010 8H7v-.19a.51.51 0 01.28-.45l.38-.19a.74.74 0 01.68 0L9 7.5l.38-.7a1 1 0 00.12-.48v-.85a.78.78 0 01.21-.53l1.07-1.09a5 5 0 01-1.54 9z"></path>
-                                    </svg>
-                                    <h6>Anyone <i className="fa-solid fa-caret-down" style={{ fontSize: "15px" }}></i></h6>
+                                    <select style={{ border: 'none' }} value={select} onChange={(e) => setSelect(e.target.value)}>
+                                        <option  > Anyone</option>
+                                        <option  >Friends</option>
+
+
+                                    </select>
                                 </div>
+
 
                             </div>
                         </div>
@@ -151,6 +181,7 @@ const Modal = ({ toggleModal }) => {
                                                     <path d="M19 4H5a3 3 0 00-3 3v10a3 3 0 003 3h14a3 3 0 003-3V7a3 3 0 00-3-3zm1 13a1 1 0 01-.29.71L16 14l-2 2-6-6-4 4V7a1 1 0 011-1h14a1 1 0 011 1zm-2-7a2 2 0 11-2-2 2 2 0 012 2z"></path>
                                                 </svg>
                                                 <input type="file" onChange={(e) => setImageFiles(e.target.files[0])} ref={inputRef} hidden />
+                                                {Imagefiles.name && <p className='imageAvailable'>{Imagefiles.name}</p>}
 
 
                                             </div>
@@ -248,7 +279,7 @@ const Modal = ({ toggleModal }) => {
 
                     </div>
 
-                    {/* <input type="text" placeholder='What you want to talk about?' /> */}
+
 
 
 
@@ -256,6 +287,21 @@ const Modal = ({ toggleModal }) => {
 
 
             </div>)}
+
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
+            {/* Same as */}
+            <ToastContainer />
 
 
 

@@ -64,13 +64,23 @@
   border: 1px solid #56687a;
 }
 .modal-content .modal_main .profile .anyone:hover {
-  box-shadow: 1px solid red;
+  cursor: pointer;
+}
+.modal-content .modal_main .profile .anyone select {
+  font-size: 12px;
+  font-weight: 300;
+  border: none;
+  outline: none;
+  background-color: #ffffff;
+}
+
+.modal-content .modal_main .profile .anyone:hover {
   background-color: #e2e2e2;
   cursor: pointer;
 }
-.modal-content .modal_main .profile .anyone h6 {
-  font-size: 12px;
-  font-weight: 300;
+.modal-content .modal_main .profile .anyone select:hover {
+  background-color: #e2e2e2;
+  cursor: pointer;
 }
 
 .modal-content .modal_main .profile .anyone svg {
@@ -243,6 +253,16 @@
 
 .editor_con .selectMedia .left :hover span {
   visibility: visible;
+}
+
+/* if image available  */
+
+.selectMedia .imageAvailable {
+  font-size: 10px;
+  color: rgb(116, 114, 114);
+  position: absolute;
+  top: -37%;
+  left: 0%;
 }
 
 @media screen and (min-width: 320px) and (max-width: 530px) {
