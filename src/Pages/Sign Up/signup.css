@@ -208,7 +208,7 @@
 @media only screen and (max-width: 1160px) {
   .signUpCon {
     background-color: #ffff;
-    height: auto;
+    height: 100vh;
   }
   .signUpCon section svg {
     margin-left: 0px;

@@ -4,6 +4,8 @@ import Modal from '../../../Components/Modal/Modal';
 import '../../../Components/Modal/Modal.css'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Liked from '../../../Components/Liked/Liked';
+import Comment from '../../../Components/Comment/Comment';
 const MainSide = () => {
 
     const [modal, setModal] = useState(false);
@@ -17,8 +19,6 @@ const MainSide = () => {
             .then(res => setPosts(res.data))
     }
 
-
-
     const toggleModal = () => {
         navigate('/home')
 
@@ -29,6 +29,18 @@ const MainSide = () => {
 
         gettigPosts();
     }, [modal])
+
+
+
+
+    const [comment, setComment] = useState(false)
+    const [openComment, setOpenComment] = useState(null);
+
+    const handleComment = (id) => {
+        setOpenComment(id);
+        setComment(!comment);
+        console.log(comment)
+    };
 
 
     return (
@@ -56,16 +68,7 @@ const MainSide = () => {
                         />
 
 
-                        {/* <input
-                            className='start_a_post'
-                            type="button"
 
-                            name="search"
-                            id="search"
-                            placeholder="Start a post"
-                            value="Start a post"
-                            onClick={toggleModal}
-                        /> */}
                     </div>
                     <div className="media">
                         <div className="items" onClick={toggleModal}>
@@ -151,7 +154,7 @@ const MainSide = () => {
                     posts.map(post => {
 
                         const { id, desc, post_img, privacy } = post;
-
+                        console.log("post", id)
                         return (
                             <div className="newsfeedCon" key={id}>
                                 <div className="newsfeed">
@@ -200,10 +203,10 @@ const MainSide = () => {
 
                                         <div className="media">
                                             <div className="items">
-                                                <i className="fa-regular fa-thumbs-up fa-lg"></i>
-                                                <h6>Like</h6>
+                                                <Liked id={id} ></Liked>
+
                                             </div>
-                                            <div className="items">
+                                            <div className="items" onClick={() => handleComment(id)}>
                                                 <svg
                                                     xmlns="http://www.w3.org/2000/svg"
                                                     viewBox="0 0 24 24"
@@ -219,6 +222,9 @@ const MainSide = () => {
                                                     ></path>
                                                 </svg>
                                                 <h6>Comment</h6>
+
+
+
                                             </div>
                                             <div className="items">
                                                 <i className="fa-solid fa-repeat fa-lg"></i>
@@ -243,6 +249,10 @@ const MainSide = () => {
                                                 <h6>Send</h6>
                                             </div>
                                         </div>
+
+
+                                        {openComment === id && comment && <Comment id={id}></Comment>}
+
                                     </div>
 
 

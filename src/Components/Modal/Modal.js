@@ -248,7 +248,6 @@ const Modal = ({ toggleModal }) => {
 
                                                 {
                                                     (Imagefiles.length !== 0 || post.length !== 0) ?
-                                                        // <button type="submit" >{isdisabled && isLoading && <div className="spinner" style={{ cursor: 'not-allowed' }}  ></div>}  Post</button>
 
                                                         isdisabled ?
                                                             <button disabled style={{ cursor: 'not-allowed' }} type="submit" >{isdisabled && isLoading && <div className="spinner"   ></div>}  Post</button> :

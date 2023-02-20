@@ -1,0 +1,27 @@
+/* .socialBtns {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+}
+
+.socialBtns img {
+  width: 20px;
+  top: -40%;
+} */
+
+.likeBtn {
+  display: flex;
+  align-items: center;
+
+  padding: 2px 7px;
+  font-size: 12px;
+  justify-content: space-between;
+}
+
+.likeBtn img,
+.likeBtn h6 {
+  display: flex;
+  align-items: center;
+
+  font-size: 12px;
+}

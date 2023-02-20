@@ -206,8 +206,8 @@ const Navbar = () => {
                         </div>
 
                         {
-                            user ? <Link onClick={() => signOut(auth)} >SignOut</Link>
-                                : <Link to='/signin'  >Sign In</Link>
+                            user ? <Link style={{ color: 'red', border: '1px solid red' }} onClick={() => signOut(auth)} >SignOut</Link>
+                                : <Link style={{ color: 'blue', border: '1px solid indigo' }} to='/signin'  >Sign In</Link>
                         }
                     </div>
                 </div>

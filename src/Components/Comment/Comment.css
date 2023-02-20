@@ -1,0 +1,89 @@
+.commentCon .comment {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  gap: 0.5rem;
+}
+.commentCon img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+
+.commentCon .comment textarea {
+  min-width: 80%;
+  border: none;
+  outline: none;
+
+  height: 40px;
+  line-height: 40px;
+  padding-left: 10px;
+  font-size: 14px;
+}
+.commentCon .comment form {
+  border: none;
+  outline: 1px solid rgb(118, 116, 116);
+  border-radius: 5rem;
+  display: flex;
+  align-items: center;
+  width: 80%;
+}
+.commentCon .comment form .items {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.commentCon button {
+  border: none;
+  outline: none;
+  background-color: #0a66c2;
+  color: whitesmoke;
+  padding: 3px 12px;
+  border-radius: 5rem;
+  cursor: pointer;
+  transition: 0.4s ease;
+  font-weight: 500;
+  margin-left: 3.7rem;
+}
+
+.commentCon button:hover {
+  background-color: #04274a;
+}
+
+.commentCon .shwoCommnet {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  gap: 0.5rem;
+}
+.commentCon .shwoCommnet .content {
+  background-color: rgb(231, 228, 228);
+  border-radius: 0.5rem;
+  width: 100%;
+  padding: 1rem;
+}
+.commentCon .shwoCommnet p {
+  padding: 0;
+}
+
+.commentCon .shwoCommnet h6 {
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0;
+  margin: 0;
+}
+.commentCon .shwoCommnet small {
+  color: rgb(42, 41, 41);
+  font-size: 10px;
+
+  padding: 10px;
+  padding: 0;
+  margin: 0;
+}
+
+/* .commentCon button {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+} */
