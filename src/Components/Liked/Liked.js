@@ -1,10 +1,10 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './Liked.css'
 const Liked = ({ id }) => {
     const [like, setLike] = useState(true);
 
-    const [isLike, setIsLike] = useState('');
+    // const [isLike, setIsLike] = useState('');
     // updating liked functionality to server 
     const handleLike = (e) => {
         e.preventDefault()
@@ -40,7 +40,7 @@ const Liked = ({ id }) => {
     //         })
     // }, [])
 
-    console.log(like, isLike)
+
 
     return (
         <div className='socialCon'>
