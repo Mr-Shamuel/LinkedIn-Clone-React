@@ -5,22 +5,24 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../Firebase/firebase.Config';
 
 const LeftSide = () => {
-    const [user, loading, error] = useAuthState(auth);
-    const { displayName, email, photoURL } = user;
-    console.log(photoURL)
+    //for dynamic user
+    const [user,] = useAuthState(auth);
+    const { displayName, photoURL } = user;
 
-    console.log('user_details', user)
+
+
     return (
         <div className='leftSide_con'>
             <aside>
                 <div className="left_sidebar">
                     <div className="top" >
 
-                        {photoURL ? <img style={{ width: "80 px", height: "80 px" }} src={photoURL} alt="user img" /> : null}
+                        {photoURL ? <img style={{ width: "80px", height: "80px" }} src={photoURL} alt="user img" /> : <img style={{ width: "80px", height: "80px" }} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzhF6PzlSVIjBadF6VjfUIVEUB1ykAkQhHRB0ewaQV7oqC7lE_avQA9LDuG-HNjUhNX6M&usqp=CAU" alt="user img" />}
+
 
                     </div>
                     <div className="profile">
-                        {user && <Link to='/'> <h6>{displayName}</h6></Link>}
+                        {displayName ? <Link to='/'> <h6>{displayName}</h6></Link> : 'User Profile'}
                         <p>#1 Front End Developer🚀 | React.js developer |🤝 Partner</p>
                     </div>
 

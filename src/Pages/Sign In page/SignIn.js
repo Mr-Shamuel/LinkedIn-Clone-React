@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../Firebase/firebase.Config';
 import './sign.css'
 import { RotatingLines } from 'react-loader-spinner'
@@ -8,7 +8,7 @@ import { useFormik } from 'formik';
 
 const SignIn = () => {
     const [signInWithEmailAndPassword, user1, loading1, error1,] = useSignInWithEmailAndPassword(auth);
-    const [signInWithGoogle] = useSignInWithGoogle(auth);
+    const [signInWithGoogle, user] = useSignInWithGoogle(auth);
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
 
@@ -61,18 +61,22 @@ const SignIn = () => {
     //google signing 
     const HandleGoogleSignIn = (e) => {
         signInWithGoogle()
-            .then(() => {
 
-                navigate('/home')
-
-            })
         e.preventDefault()
     }
 
-    //if user login then redirect to home page
-    if (user1) {
-        navigate('/home')
-    }
+
+    // redirect or location
+    let location = useLocation();
+    let from = location?.state?.pathname || '/home';
+
+    useEffect(() => {
+        if (user1 || user) {
+            navigate(from, { replace: true });
+        }
+    }, [user1, user]);
+
+
     //spinner 
     if (loading1) {
         return <div className="spinners" style={{
@@ -99,7 +103,7 @@ const SignIn = () => {
         <div className="signinCOn">
 
             <section>
-                <div className="svg">
+                {/* <div className="svg">
                     <Link to='/home'> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 84 21" preserveAspectRatio="xMinYMin meet" version="1.1" focusable="false" className="lazy-loaded">
                         <g className="inbug" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                             <path d="M19.479,0 L1.583,0 C0.727,0 0,0.677 0,1.511 L0,19.488 C0,20.323 0.477,21 1.333,21 L19.229,21 C20.086,21 21,20.323 21,19.488 L21,1.511 C21,0.677 20.336,0 19.479,0" className="bug-text-color" transform="translate(63.000000, 0.000000)"></path>
@@ -114,7 +118,7 @@ const SignIn = () => {
                             <polygon fill="#0a66c2" points="3 3 0 3 0 18 9 18 9 15 3 15"></polygon>
                         </g>
                     </svg> </Link>
-                </div>
+                </div> */}
 
                 <div className="formCon">
                     <form onSubmit={formik.handleSubmit}>
@@ -165,7 +169,7 @@ const SignIn = () => {
                         <p className="forget"><Link to='/'>Forgot password?</Link>.</p>
 
 
-                        <button className="agreeBtn">SignIn</button>
+                        <button type='submit' className="agreeBtn">SignIn</button>
 
                         <div className="devider">
                             <div className="line"></div>
@@ -176,7 +180,7 @@ const SignIn = () => {
 
 
 
-                        <button className="googleBtn" onClick={HandleGoogleSignIn}>
+                        <button type="button" className="googleBtn" onClick={HandleGoogleSignIn}>
                             <img width="25px"
                                 src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png"
                                 alt="google Btn"
@@ -185,7 +189,7 @@ const SignIn = () => {
                         </button>
 
 
-                        <button className="AppleBtn" onClick={HandleGoogleSignIn}>
+                        <button type='button' className="AppleBtn" onClick={HandleGoogleSignIn}>
                             <img width="20px"
                                 src="https://e7.pngegg.com/pngimages/109/296/png-clipart-apple-logo-apple-heart-logo-thumbnail.png"
                                 alt="Apple Btn"
@@ -202,7 +206,7 @@ const SignIn = () => {
                 </p>
             </section>
 
-            <footer>
+            {/* <footer>
                 <div className="copyright">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -256,7 +260,7 @@ const SignIn = () => {
                 <Link to='/'>Copyright Policy</Link>
                 <Link to='/'>Send Feedback</Link>
                 <Link to='/'>Languages</Link>
-            </footer>
+            </footer> */}
         </div>
     );
 };

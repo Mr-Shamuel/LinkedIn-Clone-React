@@ -9,8 +9,8 @@ const Comment = ({ id }) => {
     const [text, setText] = useState([]);
     const [showComment, setShowComment] = useState('')
 
-    const [user, loading, error] = useAuthState(auth);
-    const { displayName, email, photoURL } = user;
+    const [user,] = useAuthState(auth);
+    const { displayName, photoURL } = user;
 
 
     const handleSubmit = (event) => {
@@ -42,7 +42,7 @@ const Comment = ({ id }) => {
                 <img src={photoURL} alt="" />
                 {/* <form onSubmit={handleSubmit}> */}
                 <form  >
-                    <textarea onChange={(e) => setText(e.target.value)} type="text" value={text} placeholder='Add a comment..' />
+                    <textarea onChange={(e) => setText(e.target.value)} type="text" value={text} style={{ resize: 'none' }} placeholder='Add a comment..' />
                     <div className="items">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" className="mercado-match" width="24" height="24" focusable="false">
                             <path d="M19 4H5a3 3 0 00-3 3v10a3 3 0 003 3h14a3 3 0 003-3V7a3 3 0 00-3-3zm1 13a1 1 0 01-.29.71L16 14l-2 2-6-6-4 4V7a1 1 0 011-1h14a1 1 0 011 1zm-2-7a2 2 0 11-2-2 2 2 0 012 2z"></path>
@@ -66,7 +66,7 @@ const Comment = ({ id }) => {
 
                     <img src={photoURL} alt="" />
                     <div className="content">
-                        <h6>  Shamuel Molla   </h6>
+                        <h6>  {displayName}  </h6>
 
                         <p>{showComment}</p>
                     </div>

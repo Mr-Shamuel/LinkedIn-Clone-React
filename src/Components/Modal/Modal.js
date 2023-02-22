@@ -1,9 +1,11 @@
 
 import axios from 'axios';
 import { useRef, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import auth from '../../Firebase/firebase.Config';
 import './Modal.css'
 
 const Modal = ({ toggleModal }) => {
@@ -12,13 +14,9 @@ const Modal = ({ toggleModal }) => {
     const [select, setSelect] = useState("Anyone");
     const [isLoading, setIsLoading] = useState(false)
     const [isdisabled, setIsDisabled] = useState(false)
-    console.log(toggleModal)
-
-    // console.log("Post : ", post.length)
-    // console.log("Images : ", Imagefiles)
-    // console.log("Images len : ", Imagefiles.length)
-    console.log(select);
-
+    //for dynamic user
+    const [user,] = useAuthState(auth);
+    const { displayName, photoURL } = user;
 
 
     const inputRef = useRef(null);
@@ -130,9 +128,9 @@ const Modal = ({ toggleModal }) => {
                     </div>
                     <div className="modal_main">
                         <div className="profile">
-                            <img src="https://media.licdn.com/dms/image/C4D03AQE-NHNMs2SOQA/profile-displayphoto-shrink_100_100/0/1655985618559?e=1681948800&amp;v=beta&amp;t=aBNl79AGLra-LwLOujv_ThaAz5tDEqBJbuBan_M8hYI" loading="lazy" alt="Shamuel Molla" id="ember1216" className="EntityPhoto-circle-2 lazy-image ember-view" />
+                            <img src={photoURL} id="ember1216" className="EntityPhoto-circle-2 lazy-image ember-view" alt='modal-img' />
                             <div className="visiblity">
-                                <h6 className='name'>Shamuel Molla</h6>
+                                <h6 className='name'>{displayName}</h6>
 
 
 

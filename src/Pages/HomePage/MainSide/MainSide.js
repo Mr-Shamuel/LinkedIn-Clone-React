@@ -53,6 +53,7 @@ const MainSide = () => {
             <main>
                 <div className="post">
                     <div className="search">
+
                         <img
                             src={photoURL}
                             alt="Visit profile for Shamuel Molla"
@@ -167,6 +168,7 @@ const MainSide = () => {
                                         <div className="profile">
                                             <img style={{ width: '50px', height: '50px', borderRadius: '50%' }} src={photoURL} loading="lazy" alt="Shamuel Molla" id="ember2440" className="presence-entity__image  ivm-view-attr__img--centered EntityPhoto-circle-3 update-components-actor__avatar-image EntityPhoto-circle-3 lazy-image ember-view" />
                                             <h6>
+
                                                 {displayName}
                                                 <span> #1 Front End Developer🚀
                                                 </span>

@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './signup.css';
 import { useSignInWithGoogle, useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../Firebase/firebase.Config';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { RotatingLines } from 'react-loader-spinner'
 import { useFormik } from 'formik';
 
 
 const SignUp = () => {
-    const [signInWithGoogle] = useSignInWithGoogle(auth);
+    const [signInWithGoogle, user1] = useSignInWithGoogle(auth);
     const [createUserWithEmailAndPassword, user, loading2, error2,] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
     const [showPassword, setShowPassword] = useState(false);
     const [Imagefiles, setImageFiles] = useState("");
+    const [isdisabled, setIsDisabled] = useState(false)
     //update profile
     const [updateProfile] = useUpdateProfile(auth);
 
@@ -32,10 +33,9 @@ const SignUp = () => {
                     photoURL: res.user.photoURL
                 }
 
-
                 axios.post('https://63f19d065b7cf4107e33fd7d.mockapi.io/Users', usersData)
                     .then((result) => {
-                        navigate('/home')
+                        console.log("success")
                     })
 
             })
@@ -44,11 +44,15 @@ const SignUp = () => {
     }
 
 
-    // redirect or location 
-    if (user) {
-        navigate('/home')
-    }
+    // redirect or location
+    let location = useLocation();
+    let from = location?.state?.pathname || '/home';
 
+    useEffect(() => {
+        if (user1 || user) {
+            navigate(from, { replace: true });
+        }
+    }, [user1, user]);
 
 
 
@@ -64,26 +68,28 @@ const SignUp = () => {
     const onSubmit = values => {
 
 
-
-
+        setIsDisabled(true)
         // images 
         const formData = new FormData();
         formData.append("file", Imagefiles);
         formData.append("upload_preset", 'a1isxeb2');
         axios.post('https://api.cloudinary.com/v1_1/dx5tmn3oc/image/upload', formData)
             .then((res) => {
-                // console.log(res.data)
+
+
                 console.log('Image upload successful:', res.data.secure_url);
-                // console.log("succes")
+
                 createUserWithEmailAndPassword(values.email, values.password)
                     .then(() => {
-                        updateProfile({ displayName: values.name, photoURL: res.data.secure_url });
+                        updateProfile({ displayName: values.name, photoURL: res.data.secure_url })
+
 
                         const usersData = {
                             name: values.name,
                             email: values.email,
                             password: values.password,
-                            photoURL: " "
+                            photoURL: res.data.secure_url
+
                         }
 
                         //posting data to server 
@@ -133,10 +139,8 @@ const SignUp = () => {
         else if (! /[a-zA-Z]/.test(values.password)) {
             errors.password = "Password must contain uppercase or lowercase letter"
         }
-        //photoURL
-        // if (!values.photoURL) {
-        //     errors.photoURL = "Required";
-        // }
+        //photo
+
 
         return errors;
     }
@@ -148,6 +152,8 @@ const SignUp = () => {
 
 
     })
+
+    // console.log(formik.values.name.length > 0 && formik.values.email.length >0 && formik.values.password.length >6 && )
 
     //spinner 
 
@@ -175,7 +181,6 @@ const SignUp = () => {
 
 
 
-
     return (
         <div className='signUpCon'>
 
@@ -184,7 +189,7 @@ const SignUp = () => {
                 <div className="svg">
 
 
-                    <Link to='/home'> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 84 21" preserveAspectRatio="xMinYMin meet" version="1.1" focusable="false" className="lazy-loaded">
+                    {/* <Link to='/home'> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 84 21" preserveAspectRatio="xMinYMin meet" version="1.1" focusable="false" className="lazy-loaded">
                         <g className="inbug" stroke="none" strokeidth="1" fill="none" fill-rule="evenodd">
                             <path d="M19.479,0 L1.583,0 C0.727,0 0,0.677 0,1.511 L0,19.488 C0,20.323 0.477,21 1.333,21 L19.229,21 C20.086,21 21,20.323 21,19.488 L21,1.511 C21,0.677 20.336,0 19.479,0" className="bug-text-color" transform="translate(63.000000, 0.000000)"></path>
                             <path d="M82.479,0 L64.583,0 C63.727,0 63,0.677 63,1.511 L63,19.488 C63,20.323 63.477,21 64.333,21 L82.229,21 C83.086,21 84,20.323 84,19.488 L84,1.511 C84,0.677 83.336,0 82.479,0 Z M71,8 L73.827,8 L73.827,9.441 L73.858,9.441 C74.289,8.664 75.562,7.875 77.136,7.875 C80.157,7.875 81,9.479 81,12.45 L81,18 L78,18 L78,12.997 C78,11.667 77.469,10.5 76.227,10.5 C74.719,10.5 74,11.521 74,13.197 L74,18 L71,18 L71,8 Z M66,18 L69,18 L69,8 L66,8 L66,18 Z M69.375,4.5 C69.375,5.536 68.536,6.375 67.5,6.375 C66.464,6.375 65.625,5.536 65.625,4.5 C65.625,3.464 66.464,2.625 67.5,2.625 C68.536,2.625 69.375,3.464 69.375,4.5 Z" className="background" fill="#0a66c2"></path>
@@ -197,7 +202,7 @@ const SignUp = () => {
                             <path d="M11,18 L14,18 L14,8 L11,8 L11,18 Z M12.501,6.3 C13.495,6.3 14.3,5.494 14.3,4.5 C14.3,3.506 13.495,2.7 12.501,2.7 C11.508,2.7 10.7,3.506 10.7,4.5 C10.7,5.494 11.508,6.3 12.501,6.3 Z" fill="#0a66c2"></path>
                             <polygon fill="#0a66c2" points="3 3 0 3 0 18 9 18 9 15 3 15"></polygon>
                         </g>
-                    </svg> </Link>
+                    </svg> </Link> */}
                 </div>
                 <h2>Make the most of your professional life</h2>
 
@@ -233,9 +238,10 @@ const SignUp = () => {
                     </div>
 
                     <div className="form_group">
-                        <label htmlFor='photo'>Add Photo</label>
-                        {/* <input onBlur={formik.handleBlur} type="file" id="photo" name="photo" onChange={formik.handleChange} value={formik.values.photo} /> */}
-                        <input onBlur={formik.handleBlur} type="file" onChange={(e) => setImageFiles(e.target.files[0])} />
+                        <label htmlFor='photoURL'>Add Photo</label>
+
+                        <input type="file" onChange={(e) => setImageFiles(e.target.files[0])} />
+
                     </div>
 
                     <p>
@@ -244,7 +250,11 @@ const SignUp = () => {
                         <Link to='/'>Cookie Policy</Link>.
                     </p>
 
-                    <button type='submit' className="agreeBtn">Agree & Join</button>
+                    {
+                        formik.values.name.length > 0 && formik.values.email.length > 0 && formik.values.password.length > 6 && Imagefiles.length !== 0 && isdisabled ? <button disabled type='submit' style={{ cursor: 'not-allowed' }} className="agreeBtn">Agree & Join</button>
+                            : <button type='submit' className="agreeBtn">Agree & Join</button>
+                    }
+
 
                     {
                         error2 && <p style={{ color: 'red', textAlign: 'center', paddingTop: '5px' }}> This account is already exists</p>
