@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './signup.css';
-import { useSignInWithGoogle, useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSignInWithGoogle, useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../Firebase/firebase.Config';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
@@ -12,13 +12,11 @@ const SignUp = () => {
     const [signInWithGoogle] = useSignInWithGoogle(auth);
     const [createUserWithEmailAndPassword, user, loading2, error2,] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
     const [showPassword, setShowPassword] = useState(false);
-
+    const [Imagefiles, setImageFiles] = useState("");
+    //update profile
+    const [updateProfile] = useUpdateProfile(auth);
 
     const navigate = useNavigate();
-
-
-
-
 
 
     // google signin 
@@ -37,14 +35,11 @@ const SignUp = () => {
 
                 axios.post('https://63f19d065b7cf4107e33fd7d.mockapi.io/Users', usersData)
                     .then((result) => {
-                        console.log(result.data)
                         navigate('/home')
                     })
 
             })
-            .catch(error => {
-                console.log(error)
-            })
+
         e.preventDefault()
     }
 
@@ -65,28 +60,45 @@ const SignUp = () => {
         photoURL: null
 
     }
+
     const onSubmit = values => {
-        console.log(values.name)
-        createUserWithEmailAndPassword(values.email, values.password)
-            .then(() => {
 
-                const usersData = {
-                    name: values.name,
-                    email: values.email,
-                    password: values.password,
-                    photoURL: " "
-                }
 
-                //posting data to server 
-                axios.post('https://63f19d065b7cf4107e33fd7d.mockapi.io/Users', usersData)
 
-                    .then((response) => {
-                        console.log(response.data)
-                    });
+
+        // images 
+        const formData = new FormData();
+        formData.append("file", Imagefiles);
+        formData.append("upload_preset", 'a1isxeb2');
+        axios.post('https://api.cloudinary.com/v1_1/dx5tmn3oc/image/upload', formData)
+            .then((res) => {
+                // console.log(res.data)
+                console.log('Image upload successful:', res.data.secure_url);
+                // console.log("succes")
+                createUserWithEmailAndPassword(values.email, values.password)
+                    .then(() => {
+                        updateProfile({ displayName: values.name, photoURL: res.data.secure_url });
+
+                        const usersData = {
+                            name: values.name,
+                            email: values.email,
+                            password: values.password,
+                            photoURL: " "
+                        }
+
+                        //posting data to server 
+                        axios.post('https://63f19d065b7cf4107e33fd7d.mockapi.io/Users', usersData)
+
+                            .then((response) => {
+                                console.log(response.data)
+                            });
+                    })
+
             })
 
 
     }
+
 
 
     const validate = values => {
@@ -218,6 +230,12 @@ const SignUp = () => {
                         {
                             formik.touched.password && formik.errors.password ? <p style={{ color: 'red', textAlign: 'left' }}>{formik.errors.password}</p> : null
                         }
+                    </div>
+
+                    <div className="form_group">
+                        <label htmlFor='photo'>Add Photo</label>
+                        {/* <input onBlur={formik.handleBlur} type="file" id="photo" name="photo" onChange={formik.handleChange} value={formik.values.photo} /> */}
+                        <input onBlur={formik.handleBlur} type="file" onChange={(e) => setImageFiles(e.target.files[0])} />
                     </div>
 
                     <p>

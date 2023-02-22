@@ -6,6 +6,7 @@ import auth from '../../Firebase/firebase.Config';
 import './Navbar.css'
 const Navbar = () => {
     const [user] = useAuthState(auth);
+    const { photoURL } = user;
     return (
         <div className='NavbarCon'>
             <nav>
@@ -144,7 +145,7 @@ const Navbar = () => {
                         <div className="user">
                             <img
                                 width="26"
-                                src="https://media.licdn.com/dms/image/C4D03AQE-NHNMs2SOQA/profile-displayphoto-shrink_100_100/0/1655985618559?e=1681344000&amp;v=beta&amp;t=dWi-H9ZTCvGUMVHvT1nBQ8NEJLk3r-UsZ0j-FfvDfPE"
+                                src={photoURL}
                                 height="26"
                                 alt="Shamuel Molla"
                                 id="ember16"

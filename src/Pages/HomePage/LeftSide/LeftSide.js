@@ -1,19 +1,26 @@
 import React from 'react';
 import './LeftSide.css'
 import { Link } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../../Firebase/firebase.Config';
 
 const LeftSide = () => {
+    const [user, loading, error] = useAuthState(auth);
+    const { displayName, email, photoURL } = user;
+    console.log(photoURL)
+
+    console.log('user_details', user)
     return (
         <div className='leftSide_con'>
             <aside>
                 <div className="left_sidebar">
                     <div className="top" >
 
-                        <img style={{ width: "80 px", height: "80 px" }} src="https://media.licdn.com/dms/image/C4D03AQE-NHNMs2SOQA/profile-displayphoto-shrink_100_100/0/1655985618559?e=1681344000&amp;v=beta&amp;t=dWi-H9ZTCvGUMVHvT1nBQ8NEJLk3r-UsZ0j-FfvDfPE" alt="user img" />
+                        {photoURL ? <img style={{ width: "80 px", height: "80 px" }} src={photoURL} alt="user img" /> : null}
 
                     </div>
                     <div className="profile">
-                        <Link to='/'> <h6>Shamuel Molla</h6></Link>
+                        {user && <Link to='/'> <h6>{displayName}</h6></Link>}
                         <p>#1 Front End Developer🚀 | React.js developer |🤝 Partner</p>
                     </div>
 

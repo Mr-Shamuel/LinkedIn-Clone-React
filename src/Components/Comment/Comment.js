@@ -1,11 +1,16 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../Firebase/firebase.Config';
 import './Comment.css'
 
 const Comment = ({ id }) => {
 
     const [text, setText] = useState([]);
     const [showComment, setShowComment] = useState('')
+
+    const [user, loading, error] = useAuthState(auth);
+    const { displayName, email, photoURL } = user;
 
 
     const handleSubmit = (event) => {
@@ -34,7 +39,7 @@ const Comment = ({ id }) => {
     return (
         <div className='commentCon'>
             <div className="comment">
-                <img src="https://media.licdn.com/dms/image/C4D03AQE-NHNMs2SOQA/profile-displayphoto-shrink_100_100/0/1655985618559?e=1682553600&v=beta&t=YtWjn2ZmIuTvByZfpL9UuUekOBp56XJg6SZE_lfwCX0" alt="" />
+                <img src={photoURL} alt="" />
                 {/* <form onSubmit={handleSubmit}> */}
                 <form  >
                     <textarea onChange={(e) => setText(e.target.value)} type="text" value={text} placeholder='Add a comment..' />
@@ -59,7 +64,7 @@ const Comment = ({ id }) => {
             {
                 showComment && <div className='shwoCommnet'>
 
-                    <img src="https://media.licdn.com/dms/image/C4D03AQE-NHNMs2SOQA/profile-displayphoto-shrink_100_100/0/1655985618559?e=1682553600&v=beta&t=YtWjn2ZmIuTvByZfpL9UuUekOBp56XJg6SZE_lfwCX0" alt="" />
+                    <img src={photoURL} alt="" />
                     <div className="content">
                         <h6>  Shamuel Molla   </h6>
 

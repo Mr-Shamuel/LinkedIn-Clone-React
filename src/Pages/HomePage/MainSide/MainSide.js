@@ -6,10 +6,15 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Liked from '../../../Components/Liked/Liked';
 import Comment from '../../../Components/Comment/Comment';
+import auth from '../../../Firebase/firebase.Config';
+import { useAuthState } from 'react-firebase-hooks/auth';
 const MainSide = () => {
 
     const [modal, setModal] = useState(false);
     const [posts, setPosts] = useState([]);
+    //for dynamic user
+    const [user,] = useAuthState(auth);
+    const { displayName, photoURL } = user;
 
 
     const navigate = useNavigate()
@@ -49,7 +54,7 @@ const MainSide = () => {
                 <div className="post">
                     <div className="search">
                         <img
-                            src="https://media.licdn.com/dms/image/C4D03AQE-NHNMs2SOQA/profile-displayphoto-shrink_100_100/0/1655985618559?e=1681344000&amp;v=beta&amp;t=dWi-H9ZTCvGUMVHvT1nBQ8NEJLk3r-UsZ0j-FfvDfPE"
+                            src={photoURL}
                             alt="Visit profile for Shamuel Molla"
                             id="ember1331"
                             className="EntityPhoto-circle-3 ember-view"
@@ -160,16 +165,16 @@ const MainSide = () => {
                                 <div className="newsfeed">
                                     <div className="header">
                                         <div className="profile">
-                                            <img style={{ width: '50px', height: '50px', borderRadius: '50%' }} src="https://media.licdn.com/dms/image/C4D03AQE-NHNMs2SOQA/profile-displayphoto-shrink_100_100/0/1655985618559?e=1681948800&amp;v=beta&amp;t=aBNl79AGLra-LwLOujv_ThaAz5tDEqBJbuBan_M8hYI" loading="lazy" alt="Shamuel Molla" id="ember2440" className="presence-entity__image  ivm-view-attr__img--centered EntityPhoto-circle-3 update-components-actor__avatar-image EntityPhoto-circle-3 lazy-image ember-view" />
+                                            <img style={{ width: '50px', height: '50px', borderRadius: '50%' }} src={photoURL} loading="lazy" alt="Shamuel Molla" id="ember2440" className="presence-entity__image  ivm-view-attr__img--centered EntityPhoto-circle-3 update-components-actor__avatar-image EntityPhoto-circle-3 lazy-image ember-view" />
                                             <h6>
-                                                Shamuel Molla
+                                                {displayName}
                                                 <span> #1 Front End Developer🚀
                                                 </span>
                                                 {privacy === 'Anyone' ? <svg style={{ width: '12px' }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" data-supported-dps="16x16" fill="currentColor" className="mercado-match" focusable="false">
                                                     <path d="M8 1a7 7 0 107 7 7 7 0 00-7-7zM3 8a5 5 0 011-3l.55.55A1.5 1.5 0 015 6.62v1.07a.75.75 0 00.22.53l.56.56a.75.75 0 00.53.22H7v.69a.75.75 0 00.22.53l.56.56a.75.75 0 01.22.53V13a5 5 0 01-5-5zm6.24 4.83l2-2.46a.75.75 0 00.09-.8l-.58-1.16A.76.76 0 0010 8H7v-.19a.51.51 0 01.28-.45l.38-.19a.74.74 0 01.68 0L9 7.5l.38-.7a1 1 0 00.12-.48v-.85a.78.78 0 01.21-.53l1.07-1.09a5 5 0 01-1.54 9z"></path>
                                                 </svg>
                                                     :
-                                                    <svg style={{ width: '12px' }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" class="mercado-match" width="24" height="24" focusable="false"><path d="M12 16v6H3v-6a3 3 0 013-3h3a3 3 0 013 3zm5.5-3A3.5 3.5 0 1014 9.5a3.5 3.5 0 003.5 3.5zm1 2h-2a2.5 2.5 0 00-2.5 2.5V22h7v-4.5a2.5 2.5 0 00-2.5-2.5zM7.5 2A4.5 4.5 0 1012 6.5 4.49 4.49 0 007.5 2z"></path></svg>
+                                                    <svg style={{ width: '12px' }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" className="mercado-match" width="24" height="24" focusable="false"><path d="M12 16v6H3v-6a3 3 0 013-3h3a3 3 0 013 3zm5.5-3A3.5 3.5 0 1014 9.5a3.5 3.5 0 003.5 3.5zm1 2h-2a2.5 2.5 0 00-2.5 2.5V22h7v-4.5a2.5 2.5 0 00-2.5-2.5zM7.5 2A4.5 4.5 0 1012 6.5 4.49 4.49 0 007.5 2z"></path></svg>
 
 
                                                 }
