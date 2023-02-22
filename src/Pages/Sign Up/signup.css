@@ -46,6 +46,10 @@
   box-shadow: 0 0 0 2px rgb(62, 61, 61);
 }
 
+.signUpCon input[type="checkbox"] {
+  display: none;
+}
+
 .signUpCon form label {
   display: block;
   text-align: left;
@@ -208,7 +212,7 @@
 @media only screen and (max-width: 1160px) {
   .signUpCon {
     background-color: #ffff;
-    height: 100vh;
+    height: auto;
   }
   .signUpCon section svg {
     margin-left: 0px;

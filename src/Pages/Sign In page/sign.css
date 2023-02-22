@@ -77,6 +77,16 @@
 .signinCOn input:focus {
   box-shadow: 0 0 0 1.5px rgb(68, 108, 230);
 }
+.signinCOn input[type="checkbox"] {
+  display: none;
+}
+.signinCOn form label {
+  display: block;
+  text-align: left;
+  color: #666666;
+  font-size: 0.8rem;
+  padding-bottom: 0.2rem;
+}
 
 .signinCOn form .form_group {
   margin: 1rem 0;

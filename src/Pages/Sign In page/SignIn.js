@@ -1,50 +1,77 @@
 import React, { useState } from 'react';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../Firebase/firebase.Config';
 import './sign.css'
 import { RotatingLines } from 'react-loader-spinner'
+import { useFormik } from 'formik';
 
 const SignIn = () => {
-
-    const navigate = useNavigate();
-
-    //email signin
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-
-    const handleEmail = (e) => {
-        setEmail(e.target.value)
-    }
-    const handlePassword = (e) => {
-        setPassword(e.target.value)
-    }
     const [signInWithEmailAndPassword, user1, loading1, error1,] = useSignInWithEmailAndPassword(auth);
-    const handleSubmit = (e) => {
-        signInWithEmailAndPassword(email, password)
-        e.preventDefault();
+    const [signInWithGoogle] = useSignInWithGoogle(auth);
+    const navigate = useNavigate();
+    const [showPassword, setShowPassword] = useState(false);
+
+    //email signin 
+    const initialValues = {
+        email: '',
+        password: '',
+
     }
 
 
-    // location (where to go)
-    const location = useLocation();
-    const form = location?.state?.from?.pathname || '/';
+    const onSubmit = values => {
+        signInWithEmailAndPassword(values.email, values.password)
 
-    //google signing
-    const [GoogleSignIn] = useSignInWithGoogle(auth);
+    }
 
 
-    const HandleGoogleSignIn = () => {
-        GoogleSignIn()
+    const validate = values => {
+        let errors = {};
+
+
+        //email
+        if (!values.email) {
+            errors.email = 'Required';
+        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+            errors.email = 'Invalid email address';
+        }
+
+        //password 
+        if (!values.password) {
+            errors.password = "Required";
+        } else if (values.password.length < 6) {
+            errors.password = "Password is too Short"
+        }
+
+        return errors;
+
+    }
+
+    const formik = useFormik({
+        initialValues,
+        onSubmit,
+        validate
+
+
+
+    })
+
+
+    //google signing 
+    const HandleGoogleSignIn = (e) => {
+        signInWithGoogle()
             .then(() => {
-                navigate(form, { replace: true })
+
+                navigate('/home')
 
             })
+        e.preventDefault()
     }
 
-
+    //if user login then redirect to home page
     if (user1) {
-        navigate(form, { replace: true }) //if user then navigate to homepage 
+        navigate('/home')
     }
     //spinner 
     if (loading1) {
@@ -73,7 +100,7 @@ const SignIn = () => {
 
             <section>
                 <div className="svg">
-                    <Link to='/'> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 84 21" preserveAspectRatio="xMinYMin meet" version="1.1" focusable="false" className="lazy-loaded">
+                    <Link to='/home'> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 84 21" preserveAspectRatio="xMinYMin meet" version="1.1" focusable="false" className="lazy-loaded">
                         <g className="inbug" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                             <path d="M19.479,0 L1.583,0 C0.727,0 0,0.677 0,1.511 L0,19.488 C0,20.323 0.477,21 1.333,21 L19.229,21 C20.086,21 21,20.323 21,19.488 L21,1.511 C21,0.677 20.336,0 19.479,0" className="bug-text-color" transform="translate(63.000000, 0.000000)"></path>
                             <path d="M82.479,0 L64.583,0 C63.727,0 63,0.677 63,1.511 L63,19.488 C63,20.323 63.477,21 64.333,21 L82.229,21 C83.086,21 84,20.323 84,19.488 L84,1.511 C84,0.677 83.336,0 82.479,0 Z M71,8 L73.827,8 L73.827,9.441 L73.858,9.441 C74.289,8.664 75.562,7.875 77.136,7.875 C80.157,7.875 81,9.479 81,12.45 L81,18 L78,18 L78,12.997 C78,11.667 77.469,10.5 76.227,10.5 C74.719,10.5 74,11.521 74,13.197 L74,18 L71,18 L71,8 Z M66,18 L69,18 L69,8 L66,8 L66,18 Z M69.375,4.5 C69.375,5.536 68.536,6.375 67.5,6.375 C66.464,6.375 65.625,5.536 65.625,4.5 C65.625,3.464 66.464,2.625 67.5,2.625 C68.536,2.625 69.375,3.464 69.375,4.5 Z" className="background" fill="#0a66c2"></path>
@@ -90,34 +117,54 @@ const SignIn = () => {
                 </div>
 
                 <div className="formCon">
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={formik.handleSubmit}>
                         <h4>Sign in</h4>
                         <p className="stayUpdate">Stay updated on your professional world</p>
                         <div className="form_group">
+                            {
+                                error1 && <p style={{ color: 'red', textAlign: 'center', paddingTop: '5px', marginBottom: '10px' }}> Wrong Email or Password</p>
+                            }
                             <input
                                 type="email"
                                 id="email"
-                                name="'email"
+                                name="email"
                                 placeholder="Email or Phone"
-                                onBlur={handleEmail}
+                                onBlur={formik.handleBlur}
+                                onChange={formik.handleChange}
+
+                                value={formik.values.email}
                             />
+
+                            {
+                                formik.touched.email && formik.errors.email ? <p style={{ color: 'red', textAlign: 'left', fontSize: '12px', paddingTop: '5px' }}>{formik.errors.email}</p> : null
+                            }
                         </div>
 
                         <div className="form_group">
                             <input
-                                type="password"
-                                name="passord"
+                                type={showPassword ? 'text' : 'password'}
+                                name="password"
                                 id="password"
                                 placeholder="Password"
-                                onBlur={handlePassword}
+                                onBlur={formik.handleBlur}
+                                onChange={formik.handleChange}
+                                value={formik.values.password}
+
                             />
+
+                            <label htmlFor="viewpass" style={{ marginTop: ' 5px' }}>
+                                <input type="checkbox" id="viewpass" name="viewpass" onClick={() => setShowPassword(!showPassword)} />
+                                {showPassword ? 'Hide' : 'Show'}</label>
+                            {
+                                formik.touched.password && formik.errors.password ? <p style={{ color: 'red', textAlign: 'left', fontSize: '12px', paddingTop: '5px' }}>{formik.errors.password}</p> : null
+                            }
+
+
                         </div>
 
                         <p className="forget"><Link to='/'>Forgot password?</Link>.</p>
 
-                        {
-                            error1 && <p style={{ color: 'red', fontSize: '12px', marginBottom: '10px' }}>{error1.message}</p>
-                        }
+
                         <button className="agreeBtn">SignIn</button>
 
                         <div className="devider">
