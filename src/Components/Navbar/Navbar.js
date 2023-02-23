@@ -2,13 +2,38 @@ import { signOut } from 'firebase/auth';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import auth from '../../Firebase/firebase.Config';
 import './Navbar.css'
 const Navbar = () => {
     const [user] = useAuthState(auth);
     const { photoURL } = user;
 
-    console.log("ssss", user)
+    const handleSignOut = () => {
+
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Your account will be sign out",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, sign out!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                signOut(auth)
+                Swal.fire(
+                    'Sign out !',
+                    'Your account has been sign out.',
+                    'success'
+                )
+
+
+            }
+        })
+
+    }
     return (
         <div className='NavbarCon'>
             <nav>
@@ -209,8 +234,8 @@ const Navbar = () => {
                         </div>
 
                         {
-                            user ? <Link className='loinBTN' style={{ color: 'red', border: '1px solid red', padding: '5px', borderRadius: "5px" }} onClick={() => signOut(auth)} >SignOut</Link>
-                                : <Link className='loinBTN' style={{ color: 'blue', border: '1px solid indigo', padding: '5px', borderRadius: "5px" }} to='/signin'  >Sign In</Link>
+                            user ? <Link className='loginBTN' onClick={handleSignOut} >Sign Out</Link>
+                                : <Link className='loginBTN' to='/signin'  >Sign In</Link>
                         }
                     </div>
                 </div>

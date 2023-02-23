@@ -9,9 +9,7 @@ import Comment from '../../../Components/Comment/Comment';
 import auth from '../../../Firebase/firebase.Config';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
-import { ToastContainer, toast } from 'react-toastify';
 import Swal from 'sweetalert2';
-// import 'react-toastify/dist/ReactToastify.css';
 const MainSide = () => {
 
     const [modal, setModal] = useState(false);
@@ -241,7 +239,10 @@ const MainSide = () => {
 
                                         {/* delete button  */}
 
-                                        <div>
+                                        <div className='post_Deletes'>
+                                            {
+                                                openBtn === id && showBtn && <button className='deleteBtn' onClick={() => { handleDeletePost(id) }}>Delete Post</button>
+                                            }
 
                                             <svg className='postDeleteBtn' onClick={(e) => { handlePost(id) }}
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -256,11 +257,9 @@ const MainSide = () => {
                                                     d="M14 12a2 2 0 11-2-2 2 2 0 012 2zM4 10a2 2 0 102 2 2 2 0 00-2-2zm16 0a2 2 0 102 2 2 2 0 00-2-2z"
                                                 ></path>
                                             </svg>
-                                            <br />
 
-                                            {
-                                                openBtn === id && showBtn && <button className='deleteBtn' onClick={() => { handleDeletePost(id) }}>Delete Post</button>
-                                            }
+
+
 
                                         </div>
 
@@ -335,20 +334,7 @@ const MainSide = () => {
                     })
                 }
             </main>
-            <ToastContainer
-                position="bottom-center"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"
-            />
-            {/* Same as */}
-            <ToastContainer />
+
 
         </div>
     );

@@ -145,6 +145,26 @@ body {
   color: black;
 }
 
+.NavbarCon .right .loginBTN {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2rem;
+  width: 5rem;
+  padding: 0px 9px;
+  border-radius: 5rem;
+  font-size: 12px;
+  border: 1px solid red;
+  cursor: pointer;
+  transition: 0.4s ease;
+  color: red;
+  font-weight: 500;
+}
+.NavbarCon .right .loginBTN:hover {
+  background-color: rgb(205, 16, 16);
+  color: whitesmoke;
+}
+
 /* navbar ends here  */
 .container {
   display: grid;
@@ -484,12 +504,17 @@ main .newsfeedCon .deleteBtn {
   transition: 0.4s ease;
   color: red;
   font-weight: 500;
-  /* position: absolute;
-  right: 10%; */
+  position: relative;
+  right: -42%;
+  top: 47%;
 }
 main .newsfeedCon .deleteBtn:hover {
   background-color: rgb(205, 16, 16);
   color: whitesmoke;
+}
+main .newsfeedCon .post_Deletes {
+  display: flex;
+  gap: 1rem;
 }
 
 main .newsfeed {
