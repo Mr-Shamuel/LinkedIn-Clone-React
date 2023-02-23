@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './LeftSide.css'
 import { Link } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -8,6 +8,12 @@ const LeftSide = () => {
     //for dynamic user
     const [user,] = useAuthState(auth);
     const { displayName, photoURL } = user;
+    useEffect(() => {
+
+        if (user) {
+            console.log('myUser', user);
+        }
+    }, [user])
 
 
 

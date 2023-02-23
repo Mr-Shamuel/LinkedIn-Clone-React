@@ -19,6 +19,8 @@ const Modal = ({ toggleModal }) => {
     const { displayName, photoURL } = user;
 
 
+
+
     const inputRef = useRef(null);
 
 
@@ -253,7 +255,7 @@ const Modal = ({ toggleModal }) => {
 
                                                         :
                                                         <button disabled type="submit" value="Post" style={{ color: "grey", background: '#e2e2e2', cursor: 'not-allowed' }}>Post</button>
-                                                    // <button disabled type="submit" value="Post" style={{ color: "grey", background: '#e2e2e2', cursor: 'not-allowed' }} />
+
 
 
                                                 }

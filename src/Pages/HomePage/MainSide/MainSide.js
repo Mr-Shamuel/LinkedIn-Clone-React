@@ -8,6 +8,10 @@ import Liked from '../../../Components/Liked/Liked';
 import Comment from '../../../Components/Comment/Comment';
 import auth from '../../../Firebase/firebase.Config';
 import { useAuthState } from 'react-firebase-hooks/auth';
+
+import { ToastContainer, toast } from 'react-toastify';
+import Swal from 'sweetalert2';
+// import 'react-toastify/dist/ReactToastify.css';
 const MainSide = () => {
 
     const [modal, setModal] = useState(false);
@@ -15,6 +19,15 @@ const MainSide = () => {
     //for dynamic user
     const [user,] = useAuthState(auth);
     const { displayName, photoURL } = user;
+
+    // delete 
+    const [showBtn, setShowBtn] = useState(false)
+    const [openBtn, setOpenBtn] = useState(null)
+    const [del, setDel] = useState(false)
+    // comment 
+
+    const [comment, setComment] = useState(false)
+    const [openComment, setOpenComment] = useState(null);
 
 
     const navigate = useNavigate()
@@ -33,19 +46,62 @@ const MainSide = () => {
     useEffect(() => {
 
         gettigPosts();
-    }, [modal])
+    }, [modal, posts, showBtn, del])
+
+
+    //delete posts 
+
+
+    const handlePost = (id) => {
+        setOpenBtn(id);
+        setShowBtn(!showBtn)
+
+    }
+    const handleDeletePost = (id) => {
 
 
 
 
-    const [comment, setComment] = useState(false)
-    const [openComment, setOpenComment] = useState(null);
+        setDel(true)
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                axios.delete(`https://63f19d065b7cf4107e33fd7d.mockapi.io/Linkedin/${id}`)
+                    .then(() => {
+                        Swal.fire(
+                            'Deleted!',
+                            'Your post has been deleted.',
+                            'success'
+                        )
+                    }
+                    )
+
+
+
+
+            }
+        })
+    }
+
+    // comment 
+
+
 
     const handleComment = (id) => {
         setOpenComment(id);
         setComment(!comment);
         console.log(comment)
     };
+
 
 
     return (
@@ -149,7 +205,7 @@ const MainSide = () => {
                     </div>
                 </div>
 
-                {/* {modal && <Modal toggleModal={toggleModal} />} */}
+
                 {modal && <Modal toggleModal={toggleModal} />}
 
 
@@ -182,21 +238,31 @@ const MainSide = () => {
                                                 }
                                             </h6>
                                         </div>
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 24 24"
-                                            data-supported-dps="24x24"
-                                            fill="currentColor"
-                                            className="mercado-match"
-                                            width="24"
-                                            height="24"
-                                            focusable="false"
-                                        >
-                                            <path
-                                                d="M14 12a2 2 0 11-2-2 2 2 0 012 2zM4 10a2 2 0 102 2 2 2 0 00-2-2zm16 0a2 2 0 102 2 2 2 0 00-2-2z"
-                                            ></path>
-                                        </svg>
 
+                                        {/* delete button  */}
+
+                                        <div>
+
+                                            <svg className='postDeleteBtn' onClick={(e) => { handlePost(id) }}
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 24 24"
+                                                data-supported-dps="24x24"
+                                                fill="currentColor"
+                                                width="24"
+                                                height="24"
+                                                focusable="false"
+                                            >
+                                                <path
+                                                    d="M14 12a2 2 0 11-2-2 2 2 0 012 2zM4 10a2 2 0 102 2 2 2 0 00-2-2zm16 0a2 2 0 102 2 2 2 0 00-2-2z"
+                                                ></path>
+                                            </svg>
+                                            <br />
+
+                                            {
+                                                openBtn === id && showBtn && <button className='deleteBtn' onClick={() => { handleDeletePost(id) }}>Delete Post</button>
+                                            }
+
+                                        </div>
 
                                     </div>
                                     <div className="box">
@@ -269,6 +335,20 @@ const MainSide = () => {
                     })
                 }
             </main>
+            <ToastContainer
+                position="bottom-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
+            {/* Same as */}
+            <ToastContainer />
 
         </div>
     );

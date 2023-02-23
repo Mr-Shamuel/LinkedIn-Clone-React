@@ -459,6 +459,39 @@ main .newsfeedCon {
   width: 100%;
   border-radius: 0.8rem;
 }
+
+main .newsfeedCon .postDeleteBtn {
+  width: 24px;
+  height: 24px;
+}
+main .newsfeedCon .postDeleteBtn:hover {
+  background-color: rgb(231, 230, 230);
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+main .newsfeedCon .deleteBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2rem;
+  width: auto;
+  padding: 0px 9px;
+  border-radius: 5rem;
+  font-size: 12px;
+  border: 1px solid red;
+  cursor: pointer;
+  transition: 0.4s ease;
+  color: red;
+  font-weight: 500;
+  /* position: absolute;
+  right: 10%; */
+}
+main .newsfeedCon .deleteBtn:hover {
+  background-color: rgb(205, 16, 16);
+  color: whitesmoke;
+}
+
 main .newsfeed {
   margin-top: 0.7rem;
   height: 100%;
@@ -472,6 +505,8 @@ main .newsfeed .header {
   display: flex;
   justify-content: space-between;
   padding: 0px 15px;
+
+  /* position: relative; */
 }
 main .newsfeed .header img {
   width: 2.1rem;

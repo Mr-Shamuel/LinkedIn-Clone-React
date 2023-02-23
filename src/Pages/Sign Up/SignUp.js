@@ -250,11 +250,13 @@ const SignUp = () => {
                         <Link to='/'>Cookie Policy</Link>.
                     </p>
 
-                    {
-                        formik.values.name.length > 0 && formik.values.email.length > 0 && formik.values.password.length > 6 && Imagefiles.length !== 0 && isdisabled ? <button disabled type='submit' style={{ cursor: 'not-allowed' }} className="agreeBtn">Agree & Join</button>
-                            : <button type='submit' className="agreeBtn">Agree & Join</button>
-                    }
 
+
+                    {
+                        isdisabled ? <button disabled type='submit' style={{ cursor: 'not-allowed', backgroundColor: 'grey' }} className="agreeBtn">Agree & Join</button>
+                            : <button type='submit' className="agreeBtn">Agree & Join</button>
+
+                    }
 
                     {
                         error2 && <p style={{ color: 'red', textAlign: 'center', paddingTop: '5px' }}> This account is already exists</p>

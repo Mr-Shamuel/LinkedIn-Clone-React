@@ -7,6 +7,8 @@ import './Navbar.css'
 const Navbar = () => {
     const [user] = useAuthState(auth);
     const { photoURL } = user;
+
+    console.log("ssss", user)
     return (
         <div className='NavbarCon'>
             <nav>

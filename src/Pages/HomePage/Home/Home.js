@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Navbar from '../../../Components/Navbar/Navbar';
 import LeftSide from '../LeftSide/LeftSide';
 import MainSide from '../MainSide/MainSide';
@@ -6,9 +7,11 @@ import RightSide from '../RightSide/RightSide';
 import './Home.css'
 
 const Home = () => {
+
+
     return (
         <div>
-            <Navbar></Navbar>
+            <Navbar ></Navbar>
             <div className="container">
                 <LeftSide></LeftSide>
                 <MainSide></MainSide>
