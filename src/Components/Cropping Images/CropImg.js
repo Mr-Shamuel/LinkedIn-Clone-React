@@ -4,7 +4,7 @@ import ImageCropper from "./ImageCropper";
 import FileInput from "./FileInput";
 import './CropImg.css'
 
-function CropImg({ setImageFiles }) {
+function CropImg({ setImageFiles, inputRef }) {
     const [image, setImage] = useState("");
     const [currentPage, setCurrentPage] = useState("choose-img");
     const [imgAfterCrop, setImgAfterCrop] = useState("");
@@ -64,10 +64,12 @@ function CropImg({ setImageFiles }) {
         setImage("");
     };
 
+
+
     return (
         <div className="Crop_container">
             {currentPage === "choose-img" ? (
-                <FileInput setImage={setImage} onImageSelected={onImageSelected} />
+                <FileInput setImage={setImage} onImageSelected={onImageSelected} inputRef={inputRef} />
             ) : currentPage === "crop-img" ? (
                 <ImageCropper
                     image={image}

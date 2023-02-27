@@ -1,10 +1,10 @@
-import React, { useRef } from "react";
+import React from "react";
 
-function FileInput({ onImageSelected }) {
-    const inputRef = useRef();
+function FileInput({ onImageSelected, inputRef }) {
 
 
     const handleOnChange = (event) => {
+
         if (event.target.files && event.target.files.length > 0) {
             const reader = new FileReader();
             reader.readAsDataURL(event.target.files[0]);
@@ -14,37 +14,27 @@ function FileInput({ onImageSelected }) {
 
             };
 
-            // onImageSelected(event.target.files[0])
+
 
         }
     };
 
 
-    const onChooseImg = () => {
-        inputRef.current.click();
-    };
+    // const onChooseImg = () => {
+    //     inputRef.current.click();
+    // };
 
     return (
         <div>
-            {/* <input
-                type="file"
-                accept="image/*"
-                ref={inputRef}
-                onChange={handleOnChange}
-                style={{ display: "none" }}
-            />
 
-            <button className="btn" onClick={onChooseImg}>
-                Choose Image
-            </button> */}
             <input className="btn"
                 type="file"
                 accept="image/*"
                 ref={inputRef}
                 onChange={handleOnChange}
+                style={{ display: 'none' }}
 
             />
-
 
 
 

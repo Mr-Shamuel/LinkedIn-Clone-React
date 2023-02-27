@@ -23,11 +23,12 @@ const Modal = ({ toggleModal }) => {
 
 
     const inputRef = useRef(null);
+    // const inputRef = useRef();
 
 
     //uploading text and image
     const handleSubmit = (e) => {
-        console.log(Imagefiles)
+
         //spinner
         setIsLoading(true)
         setIsDisabled(true)
@@ -101,18 +102,18 @@ const Modal = ({ toggleModal }) => {
             });
 
 
-        //after posting 
+        // after posting 
 
-        // toast.success('Successfully Posted', {
-        //     position: "top-center",
-        //     autoClose: 2000,
-        //     hideProgressBar: false,
-        //     closeOnClick: true,
-        //     pauseOnHover: true,
-        //     draggable: true,
-        //     progress: undefined,
-        //     theme: "light",
-        // });
+        toast.success('Successfully Posted', {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
 
         e.preventDefault();
     }
@@ -154,7 +155,7 @@ const Modal = ({ toggleModal }) => {
 
                         <div className="editor_con">
                             <form onSubmit={handleSubmit}>
-                                <textarea onChange={(e) => setPost(e.target.value)} type="text" value={post} placeholder=' What you want to talk about?' />
+                                <textarea onChange={(e) => setPost(e.target.value)} type="text" value={post} style={{ resize: 'none' }} placeholder=' What you want to talk about?' />
 
 
                                 <footer>
@@ -175,8 +176,11 @@ const Modal = ({ toggleModal }) => {
                                     </div>
 
 
-                                    <div className="cropImgCon">
-                                        <CropImg setImageFiles={setImageFiles}  ></CropImg>
+                                    {/* here i am hiding the image crop components  */}
+
+                                    <div className="cropImgCon"  >
+
+                                        <CropImg setImageFiles={setImageFiles} inputRef={inputRef} ></CropImg>
 
                                     </div>
 
@@ -195,20 +199,20 @@ const Modal = ({ toggleModal }) => {
                                                 </svg>
                                                 {/* <input type="file" onChange={(e) => setImageFiles(e.target.files[0])} ref={inputRef} hidden /> */}
 
-                                                {/* <CropImg ref={inputRef} hidden ></CropImg> */}
-                                                {/* {Imagefiles.name && <p className='imageAvailable'>{Imagefiles.name}</p>} */}
+
+                                                {Imagefiles.name && <p className='imageAvailable'>{Imagefiles.name}</p>}
 
 
                                             </div>
-                                            {/* <div onClick={(e) => (inputRef.current.click())} className="input_icon x2"> */}
-                                            <div className="input_icon x2">
+                                            <div onClick={(e) => (inputRef.current.click())} className="input_icon x2">
+
                                                 <span className="icon__text">
                                                     Add a video
                                                 </span>
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" className="mercado-match" width="24" height="24" focusable="false">
                                                     <path d="M19 4H5a3 3 0 00-3 3v10a3 3 0 003 3h14a3 3 0 003-3V7a3 3 0 00-3-3zm-9 12V8l6 4z"></path>
                                                 </svg>
-                                                {/* <input type="file" onChange={(e) => setImageFiles(e.target.files[0])} ref={inputRef} hidden /> */}
+
 
 
                                             </div>
@@ -220,7 +224,7 @@ const Modal = ({ toggleModal }) => {
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" className="mercado-match" width="24" height="24" focusable="false">
                                                     <path d="M3 3v15a3 3 0 003 3h9v-6h6V3zm9 8H6v-1h6zm6-3H6V7h12zm-2 8h5l-5 5z"></path>
                                                 </svg>
-                                                {/* <input type="file" onChange={(e) => setImageFiles(e.target.files[0])} ref={inputRef} hidden /> */}
+
 
                                             </div>
                                             <div className="input_icon">

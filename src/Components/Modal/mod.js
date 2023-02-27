@@ -152,7 +152,7 @@ const Modal = ({ toggleModal }) => {
 
                         <div className="editor_con">
                             <form onSubmit={handleSubmit}>
-                                <textarea onChange={(e) => setPost(e.target.value)} type="text" value={post} placeholder=' What you want to talk about?' />
+                                <textarea onChange={(e) => setPost(e.target.value)} type="text" value={post} style={{ resize: 'none' }} placeholder=' What you want to talk about?' />
 
 
                                 <footer>
