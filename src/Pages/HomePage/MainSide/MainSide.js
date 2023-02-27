@@ -57,9 +57,6 @@ const MainSide = () => {
     }
     const handleDeletePost = (id) => {
 
-
-
-
         setDel(true)
 
         Swal.fire({
@@ -82,9 +79,6 @@ const MainSide = () => {
                         )
                     }
                     )
-
-
-
 
             }
         })
@@ -214,7 +208,7 @@ const MainSide = () => {
                     posts.map(post => {
 
                         const { id, desc, post_img, privacy } = post;
-                        console.log("post", id)
+
                         return (
                             <div className="newsfeedCon" key={id}>
                                 <div className="newsfeed">

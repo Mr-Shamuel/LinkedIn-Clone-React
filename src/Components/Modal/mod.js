@@ -7,11 +7,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import auth from '../../Firebase/firebase.Config';
 import './Modal.css'
-import CropImg from '../../Components/Cropping Images/CropImg'
 
 const Modal = ({ toggleModal }) => {
     const [post, setPost] = useState('');
-    // const [Imagefiles, setImageFiles] = useState("");
+    const [Imagefiles, setImageFiles] = useState("");
     const [select, setSelect] = useState("Anyone");
     const [isLoading, setIsLoading] = useState(false)
     const [isdisabled, setIsDisabled] = useState(false)
@@ -19,7 +18,7 @@ const Modal = ({ toggleModal }) => {
     const [user,] = useAuthState(auth);
     const { displayName, photoURL } = user;
 
-    const [Imagefiles, setImageFiles] = useState("");
+
 
 
     const inputRef = useRef(null);
@@ -27,7 +26,6 @@ const Modal = ({ toggleModal }) => {
 
     //uploading text and image
     const handleSubmit = (e) => {
-        console.log(Imagefiles)
         //spinner
         setIsLoading(true)
         setIsDisabled(true)
@@ -103,16 +101,16 @@ const Modal = ({ toggleModal }) => {
 
         //after posting 
 
-        // toast.success('Successfully Posted', {
-        //     position: "top-center",
-        //     autoClose: 2000,
-        //     hideProgressBar: false,
-        //     closeOnClick: true,
-        //     pauseOnHover: true,
-        //     draggable: true,
-        //     progress: undefined,
-        //     theme: "light",
-        // });
+        toast.success('Successfully Posted', {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
 
         e.preventDefault();
     }
@@ -165,22 +163,12 @@ const Modal = ({ toggleModal }) => {
 
 
 
-                                        <Link to='/home'>
+                                        <Link to='/'>
                                             <h6>Add hashtag</h6>
 
                                         </Link>
 
-
-
                                     </div>
-
-
-                                    <div className="cropImgCon">
-                                        <CropImg setImageFiles={setImageFiles}  ></CropImg>
-
-                                    </div>
-
-
                                     <div className="selectMedia">
                                         <div className="left">
                                             <div onClick={(e) => (inputRef.current.click())} className="input_icon x1" >
@@ -193,22 +181,19 @@ const Modal = ({ toggleModal }) => {
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" className="mercado-match" width="24" height="24" focusable="false">
                                                     <path d="M19 4H5a3 3 0 00-3 3v10a3 3 0 003 3h14a3 3 0 003-3V7a3 3 0 00-3-3zm1 13a1 1 0 01-.29.71L16 14l-2 2-6-6-4 4V7a1 1 0 011-1h14a1 1 0 011 1zm-2-7a2 2 0 11-2-2 2 2 0 012 2z"></path>
                                                 </svg>
-                                                {/* <input type="file" onChange={(e) => setImageFiles(e.target.files[0])} ref={inputRef} hidden /> */}
-
-                                                {/* <CropImg ref={inputRef} hidden ></CropImg> */}
-                                                {/* {Imagefiles.name && <p className='imageAvailable'>{Imagefiles.name}</p>} */}
+                                                <input type="file" onChange={(e) => setImageFiles(e.target.files[0])} ref={inputRef} hidden />
+                                                {Imagefiles.name && <p className='imageAvailable'>{Imagefiles.name}</p>}
 
 
                                             </div>
-                                            {/* <div onClick={(e) => (inputRef.current.click())} className="input_icon x2"> */}
-                                            <div className="input_icon x2">
+                                            <div onClick={(e) => (inputRef.current.click())} className="input_icon x2">
                                                 <span className="icon__text">
                                                     Add a video
                                                 </span>
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" className="mercado-match" width="24" height="24" focusable="false">
                                                     <path d="M19 4H5a3 3 0 00-3 3v10a3 3 0 003 3h14a3 3 0 003-3V7a3 3 0 00-3-3zm-9 12V8l6 4z"></path>
                                                 </svg>
-                                                {/* <input type="file" onChange={(e) => setImageFiles(e.target.files[0])} ref={inputRef} hidden /> */}
+                                                <input type="file" onChange={(e) => setImageFiles(e.target.files[0])} ref={inputRef} hidden />
 
 
                                             </div>
@@ -220,7 +205,7 @@ const Modal = ({ toggleModal }) => {
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" className="mercado-match" width="24" height="24" focusable="false">
                                                     <path d="M3 3v15a3 3 0 003 3h9v-6h6V3zm9 8H6v-1h6zm6-3H6V7h12zm-2 8h5l-5 5z"></path>
                                                 </svg>
-                                                {/* <input type="file" onChange={(e) => setImageFiles(e.target.files[0])} ref={inputRef} hidden /> */}
+                                                <input type="file" onChange={(e) => setImageFiles(e.target.files[0])} ref={inputRef} hidden />
 
                                             </div>
                                             <div className="input_icon">
