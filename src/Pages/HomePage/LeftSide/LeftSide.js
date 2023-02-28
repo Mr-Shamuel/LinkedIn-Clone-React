@@ -6,13 +6,16 @@ import auth from '../../../Firebase/firebase.Config';
 
 const LeftSide = () => {
     //for dynamic user
-    const [user,] = useAuthState(auth);
+    const [user] = useAuthState(auth);
     const { displayName, photoURL } = user;
+    console.log(user, photoURL)
     useEffect(() => {
 
-        if (user) {
-            console.log('myUser', user);
-        }
+        // if (user) {
+        //     console.log('myUser', user);
+        // }
+
+
     }, [user])
 
 

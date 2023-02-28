@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import './signup.css';
-import { useSignInWithGoogle, useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
+import { useSignInWithGoogle, useCreateUserWithEmailAndPassword, useUpdateProfile, useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../Firebase/firebase.Config';
 import axios from 'axios';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { RotatingLines } from 'react-loader-spinner'
 import { useFormik } from 'formik';
+import SmallSpinner from '../../Components/Spinner/SmallSpinner';
 
 
 const SignUp = () => {
@@ -16,8 +17,14 @@ const SignUp = () => {
     const [isdisabled, setIsDisabled] = useState(false)
     //update profile
     const [updateProfile] = useUpdateProfile(auth);
+    const [isLoading, setIsLoading] = useState(false);
+    const [loginUser] = useAuthState(auth);
 
     const navigate = useNavigate();
+    if (loginUser) {
+        navigate('/home')
+    }
+
 
 
     // google signin 
@@ -26,6 +33,7 @@ const SignUp = () => {
         signInWithGoogle()
             .then((res) => {
                 // if success then  data will post to server (mock api)
+                console.log(res)
                 const name = res.user.displayName;
                 const usersData = {
                     name,
@@ -67,17 +75,17 @@ const SignUp = () => {
 
     const onSubmit = values => {
 
-
+        setIsLoading(true)
         setIsDisabled(true)
+
+
+
         // images 
         const formData = new FormData();
         formData.append("file", Imagefiles);
         formData.append("upload_preset", 'a1isxeb2');
         axios.post('https://api.cloudinary.com/v1_1/dx5tmn3oc/image/upload', formData)
             .then((res) => {
-
-
-                console.log('Image upload successful:', res.data.secure_url);
 
                 createUserWithEmailAndPassword(values.email, values.password)
                     .then(() => {
@@ -96,7 +104,8 @@ const SignUp = () => {
                         axios.post('https://63f19d065b7cf4107e33fd7d.mockapi.io/Users', usersData)
 
                             .then((response) => {
-                                console.log(response.data)
+
+                                setIsLoading(false)
                             });
                     })
 
@@ -153,30 +162,9 @@ const SignUp = () => {
 
     })
 
-    // console.log(formik.values.name.length > 0 && formik.values.email.length >0 && formik.values.password.length >6 && )
 
     //spinner 
 
-    if (loading2) {
-        return <div className="spinners" style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: '100vh',
-            width: '100%',
-
-        }}>
-            <RotatingLines
-
-
-                strokeColor="grey"
-                strokeWidth="4"
-                animationDuration=".75"
-                width="100"
-                visible={true}
-            />
-        </div>
-    }
 
 
 
@@ -252,11 +240,21 @@ const SignUp = () => {
 
 
 
+                    {/* {
+                        isdisabled ? <button disabled type='submit' style={{ cursor: 'not-allowed', backgroundColor: 'grey', display: 'flex', alignItems: 'center', justifyContent: 'center' }} className="agreeBtn"> {<SmallSpinner></SmallSpinner>} Agree & Join</button>
+                            : <button type='submit' className="agreeBtn" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}> {isLoading && <SmallSpinner></SmallSpinner>} Agree & Join</button>
+
+                    } */}
+
                     {
-                        isdisabled ? <button disabled type='submit' style={{ cursor: 'not-allowed', backgroundColor: 'grey' }} className="agreeBtn">Agree & Join</button>
-                            : <button type='submit' className="agreeBtn">Agree & Join</button>
+                        Imagefiles.length === 0 ? <button disabled type='submit' style={{ cursor: 'not-allowed', backgroundColor: 'grey', display: 'flex', alignItems: 'center', justifyContent: 'center' }} className="agreeBtn">   Agree & Join</button>
+                            : <button type='submit' className="agreeBtn" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}> {isLoading && <SmallSpinner></SmallSpinner>} Agree & Join</button>
 
                     }
+
+
+
+
 
                     {
                         error2 && <p style={{ color: 'red', textAlign: 'center', paddingTop: '5px' }}> This account is already exists</p>

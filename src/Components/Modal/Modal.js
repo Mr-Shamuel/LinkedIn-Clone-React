@@ -271,7 +271,7 @@ const Modal = ({ toggleModal }) => {
 
                                                         isdisabled ?
                                                             <button disabled style={{ cursor: 'not-allowed' }} type="submit" >{isdisabled && isLoading && <div className="spinner"   ></div>}  Post</button> :
-                                                            <button type="submit" >{isdisabled && isLoading && <div className="spinner"    ></div>}  Post</button>
+                                                            <button type="submit" >{isdisabled && isLoading && <div className="spinner" ></div>}  Post</button>
 
                                                         :
                                                         <button disabled type="submit" value="Post" style={{ color: "grey", background: '#e2e2e2', cursor: 'not-allowed' }}>Post</button>

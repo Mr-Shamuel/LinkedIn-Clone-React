@@ -17,7 +17,7 @@ const MainSide = () => {
     const [modal, setModal] = useState(false);
     const [posts, setPosts] = useState([]);
     //for dynamic user
-    const [user,] = useAuthState(auth);
+    const [user] = useAuthState(auth);
     const { displayName, photoURL } = user;
 
     // delete 

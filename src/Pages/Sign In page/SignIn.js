@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useAuthState, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../Firebase/firebase.Config';
 import './sign.css'
 import { RotatingLines } from 'react-loader-spinner'
 import { useFormik } from 'formik';
+import { Box, CircularProgress } from '@mui/material';
+import SmallSpinner from '../../Components/Spinner/SmallSpinner';
 
 const SignIn = () => {
     const [signInWithEmailAndPassword, user1, loading1, error1,] = useSignInWithEmailAndPassword(auth);
     const [signInWithGoogle, user] = useSignInWithGoogle(auth);
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
-
+    const [isLoading, setIsLoading] = useState(false);
+    const [loginUser] = useAuthState(auth);
     //email signin 
     const initialValues = {
         email: '',
@@ -19,12 +22,22 @@ const SignIn = () => {
 
     }
 
-
-    const onSubmit = values => {
-        signInWithEmailAndPassword(values.email, values.password)
-
+    //if user is login then redirect to home page
+    if (loginUser) {
+        navigate('/home')
     }
 
+    // { loginUser && navigate('/home') }
+
+    const onSubmit = values => {
+        setIsLoading(true)
+        signInWithEmailAndPassword(values.email, values.password)
+            .then(() => {
+                setIsLoading(false)
+            })
+
+
+    }
 
     const validate = values => {
         let errors = {};
@@ -77,27 +90,7 @@ const SignIn = () => {
     }, [user1, user]);
 
 
-    //spinner 
-    if (loading1) {
-        return <div className="spinners" style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: '100vh',
-            width: '100%',
 
-        }}>
-            <RotatingLines
-
-
-                strokeColor="grey"
-                strokeWidth="4"
-                animationDuration=".75"
-                width="100"
-                visible={true}
-            />
-        </div>
-    }
 
     return (
         <div className="signinCOn">
@@ -169,7 +162,9 @@ const SignIn = () => {
                         <p className="forget"><Link to='/'>Forgot password?</Link>.</p>
 
 
-                        <button type='submit' className="agreeBtn">SignIn</button>
+                        <button type='submit' className="agreeBtn" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                            {isLoading && <SmallSpinner></SmallSpinner>}
+                            SignIn</button>
 
                         <div className="devider">
                             <div className="line"></div>
