@@ -1,24 +1,35 @@
 .privacyCon .form_group {
-  background-color: rgb(81, 175, 215);
+  background-color: rgb(145, 203, 227);
   margin: 1rem;
   padding: 1rem;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   display: flex;
   align-items: center;
   justify-content: space-around;
   font-weight: 600;
 }
 .privacyCon .form_group input {
-  width: 100px;
-  height: 1rem;
+  /* width: 100px; */
+  width: 100%;
+  height: 1.5rem;
+  cursor: pointer;
 }
 
 .privacyCon button {
   background-color: rgb(50, 143, 50);
-  padding: 1rem;
+  width: 100px;
+  padding: 0.8rem;
   display: block;
   margin: 0px auto;
   font-size: 1rem;
-  font-weight: bolder;
+  font-weight: 500;
   color: white;
+  border-radius: 0.8rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 6px 8px 56px -8px rgba(0, 0, 0, 0.97);
+}
+
+.privacyCon button:hover {
+  background-color: rgb(60, 189, 60);
 }
