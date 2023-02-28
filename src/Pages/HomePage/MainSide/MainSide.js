@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './MainSide.css';
 import Modal from '../../../Components/Modal/Modal';
+import PrivacyModal from '../../../Components/Modal/Privacy Modal/PrivacyModal';
 import '../../../Components/Modal/Modal.css'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -8,6 +9,7 @@ import Liked from '../../../Components/Liked/Liked';
 import Comment from '../../../Components/Comment/Comment';
 import auth from '../../../Firebase/firebase.Config';
 import { useAuthState } from 'react-firebase-hooks/auth';
+
 
 import Swal from 'sweetalert2';
 const MainSide = () => {
@@ -27,7 +29,7 @@ const MainSide = () => {
     const [comment, setComment] = useState(false)
     const [openComment, setOpenComment] = useState(null);
     //privacy
-    const [privacy, setPrivacy] = useState(false)
+    const [privacyEdit, setPrivacyEdit] = useState(false)
 
 
     const navigate = useNavigate()
@@ -110,19 +112,30 @@ const MainSide = () => {
 
 
     useEffect(() => {
-        console.log(del)
+
         if (posts.length > 0 && del) {
+
             gettigPosts();
             setDel(false)
         }
     }, [posts, del])
 
+
+    //privacy 
+    useEffect(() => {
+
+        gettigPosts();
+    }, [privacyEdit])
+
+
+
     // handle Privacy 
     const handlePrivecy = () => {
-        setPrivacy(!privacy)
+        navigate('/home')
+        setPrivacyEdit(!privacyEdit)
     }
 
-    // console.log(privacy)
+
 
     return (
         <div className='MainSide_con'>
@@ -228,6 +241,10 @@ const MainSide = () => {
 
                 {modal && <Modal toggleModal={toggleModal} />}
 
+                {/* {
+                    privacyEdit && <PrivacyModal handlePrivecy={handlePrivecy}></PrivacyModal>
+                } */}
+
 
 
 
@@ -239,6 +256,10 @@ const MainSide = () => {
 
                         return (
                             <div className="newsfeedCon" key={id}>
+                                {
+                                    privacyEdit && <PrivacyModal handlePrivecy={handlePrivecy} id={id}></PrivacyModal>
+                                }
+
                                 <div className="newsfeed">
                                     <div className="header">
                                         <div className="profile">
