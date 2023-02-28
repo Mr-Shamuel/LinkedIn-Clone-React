@@ -28,7 +28,7 @@ const LeftSide = () => {
 
                     </div>
                     <div className="profile">
-                        {displayName ? <Link to='/'> <h6>{displayName}</h6></Link> : 'User Profile'}
+                        {displayName ? <Link to='/home'> <h6>{displayName}</h6></Link> : <Link onClick={e => window.location.reload(false)}> <h6>User Profile</h6></Link>}
                         <p>#1 Front End Developer🚀 | React.js developer |🤝 Partner</p>
                     </div>
 

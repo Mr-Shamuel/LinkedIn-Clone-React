@@ -75,7 +75,7 @@ const Modal = ({ toggleModal }) => {
                     //sending post description to the server
                     axios.post('https://63f19d065b7cf4107e33fd7d.mockapi.io/Linkedin', postData)
                         .then((response) => {
-                            console.log(response.data)
+
                             toggleModal();
                         });
 

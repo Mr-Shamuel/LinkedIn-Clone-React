@@ -20,9 +20,7 @@ function FileInput({ onImageSelected, inputRef }) {
     };
 
 
-    // const onChooseImg = () => {
-    //     inputRef.current.click();
-    // };
+
 
     return (
         <div>
