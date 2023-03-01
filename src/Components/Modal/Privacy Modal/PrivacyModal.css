@@ -1,18 +1,25 @@
 .privacyCon .form_group {
-  background-color: rgb(145, 203, 227);
+  background-color: rgb(225, 226, 226);
   margin: 1rem;
   padding: 1rem;
   font-size: 1.3rem;
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  font-weight: 600;
+  justify-content: space-between;
+  font-weight: 500;
+  border-radius: 0.8rem;
 }
 .privacyCon .form_group input {
   /* width: 100px; */
-  width: 100%;
+  width: 30%;
   height: 1.5rem;
   cursor: pointer;
+}
+
+.privacyCon .form_group label {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
 }
 
 .privacyCon button {

@@ -3,9 +3,9 @@ import { useAuthState, useSignInWithEmailAndPassword, useSignInWithGoogle } from
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../Firebase/firebase.Config';
 import './sign.css'
-import { RotatingLines } from 'react-loader-spinner'
+
 import { useFormik } from 'formik';
-import { Box, CircularProgress } from '@mui/material';
+
 import SmallSpinner from '../../Components/Spinner/SmallSpinner';
 
 const SignIn = () => {
@@ -96,7 +96,7 @@ const SignIn = () => {
         <div className="signinCOn">
 
             <section>
-                {/* <div className="svg">
+                <div className="svg">
                     <Link to='/home'> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 84 21" preserveAspectRatio="xMinYMin meet" version="1.1" focusable="false" className="lazy-loaded">
                         <g className="inbug" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                             <path d="M19.479,0 L1.583,0 C0.727,0 0,0.677 0,1.511 L0,19.488 C0,20.323 0.477,21 1.333,21 L19.229,21 C20.086,21 21,20.323 21,19.488 L21,1.511 C21,0.677 20.336,0 19.479,0" className="bug-text-color" transform="translate(63.000000, 0.000000)"></path>
@@ -111,7 +111,7 @@ const SignIn = () => {
                             <polygon fill="#0a66c2" points="3 3 0 3 0 18 9 18 9 15 3 15"></polygon>
                         </g>
                     </svg> </Link>
-                </div> */}
+                </div>
 
                 <div className="formCon">
                     <form onSubmit={formik.handleSubmit}>
@@ -184,13 +184,13 @@ const SignIn = () => {
                         </button>
 
 
-                        <button type='button' className="AppleBtn" onClick={HandleGoogleSignIn}>
+                        {/* <button type='button' className="AppleBtn" onClick={HandleGoogleSignIn}>
                             <img width="20px"
                                 src="https://e7.pngegg.com/pngimages/109/296/png-clipart-apple-logo-apple-heart-logo-thumbnail.png"
                                 alt="Apple Btn"
                             />
                             Sign in with Apple
-                        </button>
+                        </button> */}
                     </form>
 
 

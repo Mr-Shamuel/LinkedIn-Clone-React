@@ -17,7 +17,9 @@ const PrivacyModal = ({ handlePrivecy, id }) => {
 
         })
             .then(() => {
+
                 navigate('/home')
+
 
                 handlePrivecy()
 
@@ -29,16 +31,7 @@ const PrivacyModal = ({ handlePrivecy, id }) => {
 
 
 
-        toast.success('Privacy Updated', {
-            position: "top-center",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-        });
+
         e.preventDefault();
     }
 
@@ -61,14 +54,14 @@ const PrivacyModal = ({ handlePrivecy, id }) => {
 
 
                         <div className="form_group">
-                            <label  > Anyone </label>
+                            <label  ><i className="fa-sharp fa-solid fa-earth-americas"></i> Anyone </label>
 
                             <input type="radio" name="privacy" value="Anyone" onChange={(e) => setPrivacy(e.target.value)} />
 
 
                         </div>
                         <div className="form_group">
-                            <label  > Friends  </label>
+                            <label  ><i className="fa-sharp fa-solid fa-user-group"></i> Friends  </label>
                             <input type="radio" name="privacy" value="Friends" onChange={(e) => setPrivacy(e.target.value)} />
 
 
@@ -77,8 +70,8 @@ const PrivacyModal = ({ handlePrivecy, id }) => {
 
                         {/* <button type="submit">Save</button> */}
 
-                        {privacy ? <button type="submit">Save</button>
-                            : <button disabled style={{ backgroundColor: 'rgb(191, 194, 191)', color: 'black', border: '1px solid grey', cursor: 'not-allowed' }} type="submit">Save</button>
+                        {privacy ? <button type="submit"><i className="fa-sharp fa-solid fa-floppy-disk"></i> Save</button>
+                            : <button disabled style={{ backgroundColor: 'rgb(191, 194, 191)', color: 'black', border: '1px solid grey', cursor: 'not-allowed' }} type="submit"><i className="fa-sharp fa-solid fa-floppy-disk"></i> Save</button>
                         }
 
                     </form>
@@ -95,20 +88,7 @@ const PrivacyModal = ({ handlePrivecy, id }) => {
             </div>)}
 
 
-            <ToastContainer
-                position="top-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"
-            />
-            {/* Same as */}
-            <ToastContainer />
+
 
 
         </div>

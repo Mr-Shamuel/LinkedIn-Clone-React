@@ -3,8 +3,6 @@ import axios from 'axios';
 import { useRef, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import auth from '../../Firebase/firebase.Config';
 import './Modal.css'
 import CropImg from '../../Components/Cropping Images/CropImg'
@@ -102,18 +100,6 @@ const Modal = ({ toggleModal }) => {
             });
 
 
-        // after posting 
-
-        toast.success('Successfully Posted', {
-            position: "top-center",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-        });
 
         e.preventDefault();
     }
@@ -142,7 +128,7 @@ const Modal = ({ toggleModal }) => {
 
                                 <div className='anyone'>
                                     <select style={{ border: 'none' }} value={select} onChange={(e) => setSelect(e.target.value)}>
-                                        <option  > Anyone</option>
+                                        <option  >Anyone</option>
                                         <option  >Friends</option>
 
 
@@ -307,20 +293,7 @@ const Modal = ({ toggleModal }) => {
 
             </div>)}
 
-            <ToastContainer
-                position="top-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"
-            />
-            {/* Same as */}
-            <ToastContainer />
+
 
 
 

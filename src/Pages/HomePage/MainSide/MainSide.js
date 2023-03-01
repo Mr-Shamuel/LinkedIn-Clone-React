@@ -52,11 +52,6 @@ const MainSide = () => {
         setModal(!modal)
     }
 
-    // useEffect(() => {
-
-    //     gettigPosts();
-    //     // }, [modal, posts, showBtn, del, privacy])
-    // }, [modal, showBtn, del])
 
 
     //delete posts 
@@ -245,9 +240,7 @@ const MainSide = () => {
 
                 {modal && <Modal toggleModal={toggleModal} />}
 
-                {/* {
-                    privacyEdit && <PrivacyModal handlePrivecy={handlePrivecy}></PrivacyModal>
-                } */}
+
 
 
                 {

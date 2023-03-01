@@ -8,7 +8,7 @@
   width: 100%;
 }
 .signUpCon section svg {
-  width: 135px;
+  width: 108px;
   display: flex;
   text-align: left;
   justify-content: flex-start;
@@ -54,18 +54,19 @@
   display: block;
   text-align: left;
   color: #666666;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   padding-bottom: 0.2rem;
 }
 
 .signUpCon form .form_group {
-  margin: 1rem 0;
+  /* margin: 0; */
+  margin-bottom: 0.5rem;
 }
 
 .signUpCon form p {
   font-size: 0.7rem;
   color: #8e8f8e;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .signUpCon form p a {
@@ -82,7 +83,7 @@
 .signUpCon form button,
 .signUpCon button {
   width: 100%;
-  padding: 0.7rem;
+  padding: 0.5rem;
   border-radius: 100vw;
   border: none;
   cursor: pointer;
@@ -91,7 +92,7 @@
 .signUpCon form .agreeBtn {
   background-color: #0a66c2;
   color: #ffffff;
-  font-size: 1rem;
+  font-size: 0.8rem;
   transition: 0.2s ease;
 }
 .signUpCon form .agreeBtn:hover {
@@ -101,7 +102,7 @@
 .signUpCon .devider {
   display: flex;
   align-items: center;
-  margin: 1.5rem 0;
+  margin: 1rem 0;
   padding: 0px 1rem;
   width: 100%;
 }
@@ -128,14 +129,14 @@
   box-shadow: 0 0 0 1px #c5daee;
   color: rgb(72, 69, 69);
   font-weight: 500;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   transition: 0.2s ease;
   padding: 0.4rem 1rem;
 }
 
 .signUpCon .google {
   padding: 0rem 1rem;
-  margin-top: 1.5rem;
+  /* margin-top: 1.5rem; */
 }
 
 .signUpCon .googleBtn:hover {
@@ -149,16 +150,16 @@
 }
 
 .signUpCon .alreadySign {
-  font-size: 1rem;
+  font-size: 0.8rem;
   color: #000;
   font-weight: 300;
   margin-top: 1.3rem;
 }
 
 .signUpCon .help {
-  font-size: 0.8rem;
-  margin-top: 1rem;
-  font-weight: 30 0;
+  font-size: 0.7rem;
+  margin-top: 0.5rem;
+  font-weight: 300;
 }
 .signUpCon .help a {
   font-weight: 600;
@@ -218,11 +219,11 @@
     margin-left: 0px;
   }
   .signUpCon section {
-    padding: 1.5rem 0rem;
+    padding: 1rem 0rem;
   }
   .signUpCon section h2 {
     margin: 0rem;
-    margin-top: 1rem;
+    margin-top: 0rem;
     padding: 1rem;
   }
 
@@ -231,7 +232,8 @@
     width: 460px;
   }
   .signUpCon form .form_group {
-    margin: 1rem 0;
+    /* margin: 1rem 0; */
+    /* margin-bottom: 0rem; */
   }
   .signUpCon form p {
     margin-bottom: 0rem;
@@ -244,7 +246,7 @@
   }
   .signUpCon .google {
     padding: 0rem 4rem;
-    margin-top: 1.5rem;
+    /* margin-top: 1.5rem; */
   }
   .signUpCon .copyright {
     margin: 0;
@@ -262,6 +264,13 @@
 @media only screen and (max-width: 660px) {
   .signUpCon form {
     padding: 0rem;
+    width: 300px;
+  }
+  .signUpCon .google {
+    width: 100%;
+    padding-left: 0;
+  }
+  .signUpCon .googleBtn {
     width: 300px;
   }
 }
