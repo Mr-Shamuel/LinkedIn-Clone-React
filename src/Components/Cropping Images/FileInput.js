@@ -36,10 +36,6 @@ function FileInput({ onImageSelected, inputRef }) {
 
 
 
-
-
-
-
         </div>
     );
 }

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from 'axios';
 import ImageCropper from "./ImageCropper";
 import FileInput from "./FileInput";
 import './CropImg.css'
@@ -9,18 +8,19 @@ function CropImg({ setImageFiles, inputRef }) {
     const [currentPage, setCurrentPage] = useState("choose-img");
     const [imgAfterCrop, setImgAfterCrop] = useState("");
 
+
+
     // Invoked when new image file is selected
     const onImageSelected = (selectedImg) => {
 
         setImage(selectedImg);
         setCurrentPage("crop-img");
-        //if i select image then it will send to modal
-        // setImageFiles(selectedImg)
-        // 
+
     };
 
     // Generating Cropped Image When Done Button Clicked
     const onCropDone = (imgCroppedArea) => {
+        console.log(imgCroppedArea)
         const canvasEle = document.createElement("canvas");
         canvasEle.width = imgCroppedArea.width;
         canvasEle.height = imgCroppedArea.height;
@@ -29,8 +29,18 @@ function CropImg({ setImageFiles, inputRef }) {
 
         let imageObj1 = new Image();
         imageObj1.src = image;
+
         imageObj1.onload = function () {
+
+            context.beginPath();
+            context.arc(imgCroppedArea.width / 2, imgCroppedArea.height / 2, imgCroppedArea.width / 2, 0, 2 * Math.PI);
+            context.clip();
+
+
             context.drawImage(
+
+
+
                 imageObj1,
                 imgCroppedArea.x,
                 imgCroppedArea.y,
@@ -47,13 +57,12 @@ function CropImg({ setImageFiles, inputRef }) {
             setImgAfterCrop(dataURL);
             setCurrentPage("img-cropped");
             //if done then
+            console.log(dataURL)
+            // setImageFiles(dataURL) 
+
             setImageFiles(dataURL)
-            // console.log(dataURL)
-
-
-
-
         };
+
     };
 
 
@@ -75,10 +84,12 @@ function CropImg({ setImageFiles, inputRef }) {
                     image={image}
                     onCropDone={onCropDone}
                     onCropCancel={onCropCancel}
+
                 />
             ) : (
                 <div className="crop_container">
                     <div className="cropped-img_con">
+
                         <img src={imgAfterCrop} className="cropped-img" alt="img" />
                     </div>
 
