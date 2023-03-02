@@ -166,7 +166,7 @@ const Modal = ({ toggleModal }) => {
 
                                     <div className="cropImgCon"  >
 
-                                        <CropImg setImageFiles={setImageFiles} inputRef={inputRef} ></CropImg>
+                                        <CropImg setImageFiles={setImageFiles} inputRef={inputRef}   ></CropImg>
 
                                     </div>
 
