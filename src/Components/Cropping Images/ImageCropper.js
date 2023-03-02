@@ -8,7 +8,7 @@ function ImageCropper({ image, onCropDone, onCropCancel, handleToggle, toggle })
 
     const onCropComplete = (croppedAreaPercentage, croppedAreaPixels) => {
         setCroppedArea(croppedAreaPixels);
-        console.log(croppedAreaPixels)
+
     };
 
 

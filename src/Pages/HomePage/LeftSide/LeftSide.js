@@ -8,7 +8,7 @@ const LeftSide = () => {
     //for dynamic user
     const [user] = useAuthState(auth);
     const { displayName, photoURL } = user;
-    console.log(user, photoURL)
+
     useEffect(() => {
 
         // if (user) {

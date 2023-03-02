@@ -1,46 +1,64 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../Firebase/firebase.Config';
 import './Comment.css'
 
 const Comment = ({ id }) => {
-
-    const [text, setText] = useState([]);
-    const [showComment, setShowComment] = useState('')
-
-    const [user,] = useAuthState(auth);
+    const [user] = useAuthState(auth);
     const { displayName, photoURL } = user;
+    const [text, setText] = useState('');
+    const [showComment, setShowComment] = useState([])
+    const [updateComment, setUpdateComment] = useState(false)
+
+    const [comments, setComments] = useState([])
+    const handleSubmit = (e) => {
+
+        if (text.length > 0) {
+
+            const updatedComments = [...comments, text];
+            setComments(updatedComments);
 
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
 
-        axios.put(`https://63f19d065b7cf4107e33fd7d.mockapi.io/Linkedin/${id}`, {
-            comment: text,
+            axios.put(`https://63f19d065b7cf4107e33fd7d.mockapi.io/Linkedin/${id}`, {
 
-        })
-            .then(response => {
-                console.log('User updated successfully');
-                setText('');
+                comments: updatedComments
             })
-            .catch(error => {
-                console.error('Error updating user', error);
-            });
+                .then((res) => {
+
+
+
+                    setText('');
+                    setUpdateComment(!updateComment)
+
+
+                })
+                .catch(error => {
+                    console.error('Error updating user', error);
+                });
+        }
+
+
+        e.preventDefault();
     };
 
 
-    //getting comment 
+    // getting comment 
 
-    axios.get(`https://63f19d065b7cf4107e33fd7d.mockapi.io/Linkedin/${id}`)
-        .then(res => {
-            setShowComment(res.data.comment)
-        })
+    useEffect(() => {
+        axios.get(`https://63f19d065b7cf4107e33fd7d.mockapi.io/Linkedin/${id}`)
+            .then(res => {
+                setShowComment(res.data.comments)
+            })
+    }, [updateComment])
+
+
     return (
         <div className='commentCon'>
             <div className="comment">
                 <img src={photoURL} alt="" />
-                {/* <form onSubmit={handleSubmit}> */}
+
                 <form  >
                     <textarea onChange={(e) => setText(e.target.value)} type="text" value={text} style={{ resize: 'none' }} placeholder='Add a comment..' />
                     <div className="items">
@@ -52,27 +70,37 @@ const Comment = ({ id }) => {
                         </svg>
                     </div>
 
+                    <div>
+
+                    </div>
                 </form>
 
             </div>
-            {
-                text.length > 0 && <button onClick={handleSubmit} type="submit" >  Post</button>
-            }
+
+            {text.length > 0 && <button type="submit" onClick={handleSubmit}> Post</button>}
+
+
+
+
+
+
 
 
 
             {
-                showComment && <div className='shwoCommnet'>
+                showComment?.map(x => (<div className='shwoCommnet'>
 
                     <img src={photoURL} alt="" />
                     <div className="content">
                         <h6>  {displayName}  </h6>
 
-                        <p>{showComment}</p>
+                        <p>{x}</p>
                     </div>
 
-                </div>
+                </div>)
+                )
             }
+
 
 
 

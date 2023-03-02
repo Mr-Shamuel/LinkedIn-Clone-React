@@ -43,13 +43,18 @@ const MainSide = () => {
     useEffect(() => {
 
         gettigPosts();
-    }, [modal, showBtn])
+    }, [modal])
 
 
     const toggleModal = () => {
         navigate('/home')
 
         setModal(!modal)
+
+        //hide delete button if open the modal
+        if (!modal) {
+            setShowBtn(false)
+        }
     }
 
 
@@ -58,8 +63,12 @@ const MainSide = () => {
 
 
     const handlePost = (id) => {
+
+
+        // setShowBtn(!showBtn)
+        setShowBtn(true)
+
         setOpenBtn(id);
-        setShowBtn(!showBtn)
 
     }
     const handleDeletePost = (id) => {
@@ -85,7 +94,8 @@ const MainSide = () => {
                             'success'
                         )
                         setDel(true)
-
+                        //hide delete button
+                        setShowBtn(false)
 
                     }
                     )
@@ -103,7 +113,7 @@ const MainSide = () => {
     const handleComment = (id) => {
         setOpenComment(id);
         setComment(!comment);
-        console.log(comment)
+
     };
 
 
@@ -282,7 +292,7 @@ const MainSide = () => {
                                                 openBtn === id && showBtn && <button className='deleteBtn' onClick={() => { handleDeletePost(id) }}>Delete Post</button>
                                             }
 
-                                            <svg className='postDeleteBtn' onClick={(e) => { handlePost(id) }}
+                                            <svg className='postDeleteBtn' onClick={() => { handlePost(id) }}
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 viewBox="0 0 24 24"
                                                 data-supported-dps="24x24"
