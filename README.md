@@ -2,4 +2,4 @@
 
 ## 🔗Home Page👇
 
-[Live Site : ] (https://linkedin-clone-react1.netlify.app/)
+[Live Site : ] (https://linkedin-clone-56294.web.app)
